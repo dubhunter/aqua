@@ -3,3 +3,5 @@ atlassian-ide-plugin.xml
 logs/
 conf/
 .DS_Store
+.htpasswd
+
