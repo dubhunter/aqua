@@ -13,7 +13,7 @@ then
 	u=${1}
 
 	echo "Changing ownership to ${u}"
-	chown -R ${u}:svn ./
+	chown -R ${u}:www ./
 fi
 
 chmod 775 `find ./ -type d`
