@@ -6,10 +6,10 @@ class HYException extends dbdHoldableException
 	const USER_NOT_FOUND = 1003;
 	const USER_PASS_CONFIRM_MISMATCH = 1003;
 
-	const CONTACT_NAME = 1101;
-	const CONTACT_EMAIL = 1102;
-	const CONTACT_SUBJECT = 1103;
-	const CONTACT_MESSAGE = 1104;
+	const EVENT_NAME = 1101;
+	const EVENT_DATA = 1102;
+
+	const POWER_STATUS = 1201;
 
 	private static $msgs = array();
 
@@ -26,7 +26,7 @@ class HYException extends dbdHoldableException
 	public static function g($code)
 	{
 		$key = "error".$code;
-		return key_exists($key, self::$msgs) ? self::$msgs[$key] : get_class().": Message for code ".$code." could not be found.";
+		return array_key_exists($key, self::$msgs) ? self::$msgs[$key] : get_class().": Message for code ".$code." could not be found.";
 	}
 
 	public static function ensure($expr, $code)
