@@ -47,6 +47,7 @@ class Power extends dbdModel {
 	 */
 	public function save($fields = array()) {
 		if ($this->id == 0) {
+			$this->setRead(0);
 			$this->setDateCreated(dbdDB::date());
 		}
 		$this->setDateUpdated(dbdDB::date());
