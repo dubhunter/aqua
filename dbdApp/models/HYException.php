@@ -11,6 +11,9 @@ class HYException extends dbdHoldableException
 
 	const POWER_STATUS = 1201;
 
+	const TIME_START = 1301;
+	const TIME_STOP = 1302;
+
 	private static $msgs = array();
 
 	public function __construct($code = 0)

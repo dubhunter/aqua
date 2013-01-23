@@ -43,6 +43,26 @@ class Power extends dbdModel {
  	}
 
 	/**
+	 * @return Power
+	 */
+	public static function on() {
+		$power = new self();
+		$power->setStatus(1);
+		$power->save();
+		return $power;
+	}
+
+	/**
+	 * @return Power
+	 */
+	public static function off() {
+		$power = new self();
+		$power->setStatus(0);
+		$power->save();
+		return $power;
+	}
+
+	/**
 	 * @param array $fields
 	 */
 	public function save($fields = array()) {
@@ -52,29 +72,5 @@ class Power extends dbdModel {
 		}
 		$this->setDateUpdated(dbdDB::date());
 		parent::save($fields);
-	}
-
-	public function setStatus($status) {
-		$this->status = $status;
-	}
-
-	public function setRead($read) {
-		$this->read = $read;
-	}
-
-	public function getStatus() {
-		return $this->status;
-	}
-
-	public function getRead() {
-		return $this->read;
-	}
-
-	public function getDateCreated() {
-		return $this->date_created;
-	}
-
-	public function getDateUpdated() {
-		return $this->date_updated;
 	}
 }
