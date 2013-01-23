@@ -3,8 +3,8 @@
 	<h1>{$title}</h1>
 	<form name="power-switch" id="power-switch" method="post" action="/index/power">
 		<div class="btn-group">
-			<button name="status" value="off" class="btn btn-large active">Off</button>
-			<button name="status" value="on" class="btn btn-large">On</button>
+			<button name="status" value="off" class="btn btn-large active"><i class="icon-off"></i> Off</button>
+			<button name="status" value="on" class="btn btn-large">On <i class="icon-tint"></i></button>
 		</div>
 	</form>
 </div>

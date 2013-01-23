@@ -1,5 +1,5 @@
 <?php
-class Sms extends HYController {
+class SmsController extends HYController {
 
 //	const NOTIFYR_CHANNEL = 'sms';
 
