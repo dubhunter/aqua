@@ -5,6 +5,7 @@ class Trigger extends dbdModel {
 	const TABLE_NAME = 'triggers';
 	const TABLE_KEY = 'trigger_id';
 	const TABLE_FIELD_EVENT_NAME = 'event_name';
+	const TABLE_FIELD_ENABLED = 'enabled';
 	const TABLE_FIELD_DATE_CREATED = 'date_created';
 	const TABLE_FIELD_DATE_UPDATED = 'date_updated';
 
@@ -25,10 +26,13 @@ class Trigger extends dbdModel {
 	 * @param bool $ids_only
 	 * @return array Trigger[]
 	 */
-	public static function getAll($event_name = null, $limit = null, $ids_only = false) {
+	public static function getAll($event_name = null, $enabled = null, $limit = null, $ids_only = false) {
 		$keys = array();
 		if ($event_name !== null) {
 			$keys[self::TABLE_FIELD_EVENT_NAME] = $event_name;
+		}
+		if ($enabled !== null) {
+			$keys[self::TABLE_FIELD_ENABLED] = $enabled ? 1 : 0;
 		}
 		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
 	}
@@ -47,6 +51,7 @@ class Trigger extends dbdModel {
 //		HYException::release();
 
 		if ($this->id == 0) {
+			$this->setEnabled(1);
 			$this->setDateCreated(dbdDB::date());
 		}
 		$this->setDateUpdated(dbdDB::date());
@@ -73,7 +78,7 @@ class Trigger extends dbdModel {
 
 	public static function processEvent(Event $event) {
 		/** @var $trigger Trigger */
-		foreach (self::getAll($event->getEventName()) as $trigger) {
+		foreach (self::getAll($event->getEventName(), true) as $trigger) {
 			switch ($trigger->getTriggerType()) {
 				case self::TRIGGER_TYPE_EVENT:
 					$trigger->alert($event);
