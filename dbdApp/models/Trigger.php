@@ -1,0 +1,104 @@
+<?php
+
+class Trigger extends dbdModel {
+
+	const TABLE_NAME = 'triggers';
+	const TABLE_KEY = 'trigger_id';
+	const TABLE_FIELD_EVENT_NAME = 'event_name';
+	const TABLE_FIELD_DATE_CREATED = 'date_created';
+	const TABLE_FIELD_DATE_UPDATED = 'date_updated';
+
+	const TRIGGER_TYPE_EVENT = 0;
+	const TRIGGER_TYPE_DATA_EQ_VALUE = 1;
+	const TRIGGER_TYPE_DATA_NEQ_VALUE = 2;
+	const TRIGGER_TYPE_DATA_GT_VALUE = 3;
+	const TRIGGER_TYPE_DATA_LT_VALUE = 4;
+
+	const ALERT_TYPE_SMS = 1;
+	const ALERT_TYPE_TWITTER = 2;
+	const ALERT_TYPE_EMAIL = 3;
+	const ALERT_TYPE_WEBHOOK = 4;
+
+	/**
+	 * @param null $event_name
+	 * @param null $limit
+	 * @param bool $ids_only
+	 * @return array Trigger[]
+	 */
+	public static function getAll($event_name = null, $limit = null, $ids_only = false) {
+		$keys = array();
+		if ($event_name !== null) {
+			$keys[self::TABLE_FIELD_EVENT_NAME] = $event_name;
+		}
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
+	}
+
+	public static function getCount($event_name = null) {
+		$keys = array();
+		if ($event_name !== null) {
+			$keys[self::TABLE_FIELD_EVENT_NAME] = $event_name;
+		}
+		return parent::getCount($keys);
+	}
+
+	public function save($fields = array()) {
+//		HYException::hold();
+//		HYException::ensure(($this->hasEventName() && !isset($fields[self::TABLE_FIELD_NAME])) || !empty($fields[self::TABLE_FIELD_NAME]), HYException::EVENT_NAME);
+//		HYException::release();
+
+		if ($this->id == 0) {
+			$this->setDateCreated(dbdDB::date());
+		}
+		$this->setDateUpdated(dbdDB::date());
+
+		parent::save($fields);
+	}
+
+	protected function alert(Event $event) {
+		switch ($this->getAlertType()) {
+			case self::ALERT_TYPE_SMS:
+				AlertSms::alert($this, $event);
+				break;
+			case self::ALERT_TYPE_TWITTER:
+				AlertTwitter::alert($this, $event);
+				break;
+			case self::ALERT_TYPE_EMAIL:
+				AlertEmail::alert($this, $event);
+				break;
+			case self::ALERT_TYPE_TWITTER:
+				AlertWebhook::alert($this, $event);
+				break;
+		}
+	}
+
+	public static function processEvent(Event $event) {
+		/** @var $trigger Trigger */
+		foreach (self::getAll($event->getEventName()) as $trigger) {
+			switch ($trigger->getTriggerType()) {
+				case self::TRIGGER_TYPE_EVENT:
+					$trigger->alert($event);
+					break;
+				case self::TRIGGER_TYPE_DATA_EQ_VALUE:
+					if ($event->getEventData() == $trigger->getTriggerValue()) {
+						$trigger->alert($event);
+					}
+					break;
+				case self::TRIGGER_TYPE_DATA_NEQ_VALUE:
+					if ($event->getEventData() != $trigger->getTriggerValue()) {
+						$trigger->alert($event);
+					}
+					break;
+				case self::TRIGGER_TYPE_DATA_GT_VALUE:
+					if ($event->getEventData() > $trigger->getTriggerValue()) {
+						$trigger->alert($event);
+					}
+					break;
+				case self::TRIGGER_TYPE_DATA_LT_VALUE:
+					if ($event->getEventData() < $trigger->getTriggerValue()) {
+						$trigger->alert($event);
+					}
+					break;
+			}
+		}
+	}
+}

@@ -1,4 +1,4 @@
-#!/usr/bin/php -q
+#!/usr/local/bin/php -q
 <?php
 require_once("/var/www/vhosts/hyduino.willandchi.com/httpdocs/index.php");
 ?>

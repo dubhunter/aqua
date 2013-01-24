@@ -47,8 +47,7 @@ class Power extends dbdModel {
 	 */
 	public static function on() {
 		$power = new self();
-		$power->setStatus(1);
-		$power->save();
+		$power->save(array('status' => 1));
 		return $power;
 	}
 
@@ -57,8 +56,7 @@ class Power extends dbdModel {
 	 */
 	public static function off() {
 		$power = new self();
-		$power->setStatus(0);
-		$power->save();
+		$power->save(array('status' => 0));
 		return $power;
 	}
 

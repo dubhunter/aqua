@@ -55,7 +55,7 @@ class Times extends dbdModel {
 		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
 	}
 
-	public function toStop($limit = null, $ids_only = false) {
+	public static function toStop($limit = null, $ids_only = false) {
 		$keys = array();
 		$keys[self::TABLE_FIELD_STOP] = array(date('H:i:s'), dbdDB::COMP_TYPE => dbdDB::COMP_LT);
 		$keys[self::TABLE_FIELD_RUNNING] = 1;
@@ -67,8 +67,8 @@ class Times extends dbdModel {
 	 */
 	public function save($fields = array()) {
 		HYException::hold();
-		HYException::ensure(($this->hasTimeStart() && !isset($fields[self::TABLE_FIELD_START])) || !empty($fields[self::TABLE_FIELD_START]), HYException::TIMES_START);
-		HYException::ensure(($this->hasTimeStop() && !isset($fields[self::TABLE_FIELD_STOP])) || !empty($fields[self::TABLE_FIELD_STOP]), HYException::TIMES_STOP);
+		HYException::ensure(($this->hasTimeStart() && !isset($fields[self::TABLE_FIELD_START])) || !empty($fields[self::TABLE_FIELD_START]), HYException::TIME_START);
+		HYException::ensure(($this->hasTimeStop() && !isset($fields[self::TABLE_FIELD_STOP])) || !empty($fields[self::TABLE_FIELD_STOP]), HYException::TIME_STOP);
 		HYException::release();
 
 		if ($this->id == 0) {
