@@ -28,12 +28,13 @@ class AlertSms implements TriggerAlert {
 	}
 
 	public static function alert(Trigger $trigger, Event $event) {
+		$twilio = self::getTwilioClient();
 		$sms = array(
 			'From' => TWILIO_NUMBER,
 			'To' => $trigger->getAlertRecipient(),
 			'Body' => sprintf($trigger->getAlertMsg(), $event->getEventData()),
 		);
-		$response = self::getTwilioClient()->request('/' . TWILIO_VERSION . '/Accounts/' . TWILIO_ACCOUNT_SID . '/SMS/Messages', 'POST', $sms);
+		$response = $twilio->request('/' . TWILIO_VERSION . '/Accounts/' . TWILIO_ACCOUNT_SID . '/SMS/Messages', 'POST', $sms);
 		return $response;
 	}
 
