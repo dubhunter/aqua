@@ -11,6 +11,6 @@ CREATE TABLE `triggers` (
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   PRIMARY KEY (`trigger_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `triggers` VALUES (1,'Broken Comm: SMS Will','crickets',0,NULL,1,'I havn\'t heard from the hyduino in over %d minutes.','310-804-9330',1,'2013-01-24 02:31:58','2013-01-24 02:32:01');
