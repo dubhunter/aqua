@@ -3,14 +3,16 @@ class AlertCall extends AlertTwilio {
 
 	public static function alert(Trigger $trigger, Event $event) {
 		$twilio = self::getTwilioClient();
+		$body = sprintf($trigger->getAlertMsg(), $event->getEventData());
+		$twiml = '<?xml version="1.0" encoding="UTF-8"?><Response><Say voice="woman">' . $body . '</Say></Response>';
 		//make call
-//		$sms = array(
-//			'From' => TWILIO_NUMBER,
-//			'To' => $trigger->getAlertRecipient(),
-//			'Body' => sprintf($trigger->getAlertMsg(), $event->getEventData()),
-//		);
-//		$response = $twilio->request('/' . TWILIO_VERSION . '/Accounts/' . TWILIO_ACCOUNT_SID . '/SMS/Messages', 'POST', $sms);
-//		return $response;
+		$call = array(
+			'From' => TWILIO_NUMBER,
+			'To' => $trigger->getAlertRecipient(),
+			'Url' => 'http://twimlets.com/echo?Twiml=' . urlencode($twiml),
+		);
+		$response = $twilio->request('/' . TWILIO_VERSION . '/Accounts/' . TWILIO_ACCOUNT_SID . '/Calls', 'POST', $call);
+		return $response;
 	}
 }
 
