@@ -16,9 +16,10 @@ class Trigger extends dbdModel {
 	const TRIGGER_TYPE_DATA_LT_VALUE = 4;
 
 	const ALERT_TYPE_SMS = 1;
-	const ALERT_TYPE_TWITTER = 2;
-	const ALERT_TYPE_EMAIL = 3;
-	const ALERT_TYPE_WEBHOOK = 4;
+	const ALERT_TYPE_CALL = 2;
+	const ALERT_TYPE_TWITTER = 3;
+	const ALERT_TYPE_EMAIL = 4;
+	const ALERT_TYPE_WEBHOOK = 5;
 
 	/**
 	 * @param null $event_name
@@ -64,13 +65,16 @@ class Trigger extends dbdModel {
 			case self::ALERT_TYPE_SMS:
 				AlertSms::alert($this, $event);
 				break;
+			case self::ALERT_TYPE_CALL:
+				AlertCall::alert($this, $event);
+				break;
 			case self::ALERT_TYPE_TWITTER:
 				AlertTwitter::alert($this, $event);
 				break;
 			case self::ALERT_TYPE_EMAIL:
 				AlertEmail::alert($this, $event);
 				break;
-			case self::ALERT_TYPE_TWITTER:
+			case self::ALERT_TYPE_WEBHOOK:
 				AlertWebhook::alert($this, $event);
 				break;
 		}

@@ -10,8 +10,9 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="active"><a href="/">Home</a></li>
-					<li><a href="#about">Schedule</a></li>
-					<li><a href="#contact">Log Out</a></li>
+					<li><a href="/schedule">Schedule</a></li>
+					<li><a href="/triggers">Triggers</a></li>
+					<li><a href="/logout">Log Out</a></li>
 				</ul>
 			</div>
 		</div>
