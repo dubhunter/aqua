@@ -1,6 +1,11 @@
 <?php
 class AlertSms extends AlertTwilio {
 
+	/**
+	 * @param Trigger $trigger
+	 * @param Event $event
+	 * @return TwilioRestResponse
+	 */
 	public static function alert(Trigger $trigger, Event $event) {
 		$twilio = self::getTwilioClient();
 		$sms = array(
