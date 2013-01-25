@@ -11,7 +11,9 @@ class AlertCall extends AlertTwilio {
 			'To' => $trigger->getAlertRecipient(),
 			'Url' => 'http://twimlets.com/echo?Twiml=' . urlencode($twiml),
 		);
+		dbdLog($call);
 		$response = $twilio->request('/' . TWILIO_VERSION . '/Accounts/' . TWILIO_ACCOUNT_SID . '/Calls', 'POST', $call);
+		dbdLog($response);
 		return $response;
 	}
 }
