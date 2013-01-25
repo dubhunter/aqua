@@ -4,7 +4,7 @@ class AlertCall extends AlertTwilio {
 	public static function alert(Trigger $trigger, Event $event) {
 		$twilio = self::getTwilioClient();
 		$body = sprintf($trigger->getAlertMsg(), $event->getEventData());
-		$twiml = '<?xml version="1.0" encoding="UTF-8"?><Response><Say voice="woman">' . $body . '</Say></Response>';
+		$twiml = '<Response><Say voice="woman">' . $body . '</Say></Response>';
 		//make call
 		$call = array(
 			'From' => TWILIO_NUMBER,
