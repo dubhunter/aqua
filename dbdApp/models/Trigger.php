@@ -61,6 +61,10 @@ class Trigger extends dbdModel {
 	}
 
 	protected function alert(Event $event) {
+		if (time() - strtotime($this->getLastAlertDate()) < $this->getMaxAlertInterval()) {
+			return;
+		}
+
 		switch ($this->getAlertType()) {
 			case self::ALERT_TYPE_SMS:
 				AlertSms::alert($this, $event);
@@ -78,6 +82,9 @@ class Trigger extends dbdModel {
 				AlertEmail::alert($this, $event);
 				break;
 		}
+
+		$this->setLastAlertDate(dbdDB::date());
+		$this->save();
 	}
 
 	public static function processEvent(Event $event) {
