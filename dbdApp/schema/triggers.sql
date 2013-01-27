@@ -8,7 +8,7 @@ CREATE TABLE `triggers` (
   `alert_msg` varchar(255) NOT NULL,
   `alert_recipient` varchar(255) NOT NULL,
   `enabled` tinyint(4) NOT NULL DEFAULT '0',
-  `last_alert_date` date NOT NULL DEFAULT '0000-00-00',
+  `last_alert_date` datetime NOT NULL DEFAULT '0000-00-00',
   `max_alert_interval` int(11) NOT NULL DEFAULT '0',
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
