@@ -12,6 +12,9 @@
 					<li class="active"><a href="/">Home</a></li>
 					<li><a href="/schedule">Schedule</a></li>
 					<li><a href="/triggers">Triggers</a></li>
+				</ul>
+				<ul class="nav pull-right">
+					<li><a href="#" class="brand"><i class="icon-tint"{if $powerOn} style="color: #0099FF;"{/if}></i></a></li>
 					<li><a href="/logout">Log Out</a></li>
 				</ul>
 			</div>
