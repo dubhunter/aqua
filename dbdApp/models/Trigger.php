@@ -4,6 +4,7 @@ class Trigger extends dbdModel {
 
 	const TABLE_NAME = 'triggers';
 	const TABLE_KEY = 'trigger_id';
+	const TABLE_FIELD_TRIGGER_NAME = 'trigger_name';
 	const TABLE_FIELD_EVENT_NAME = 'event_name';
 	const TABLE_FIELD_ENABLED = 'enabled';
 	const TABLE_FIELD_DATE_CREATED = 'date_created';
@@ -36,7 +37,7 @@ class Trigger extends dbdModel {
 		if ($enabled !== null) {
 			$keys[self::TABLE_FIELD_ENABLED] = $enabled ? 1 : 0;
 		}
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_EVENT_NAME . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_EVENT_NAME . "`,`" . self::TABLE_FIELD_TRIGGER_NAME . "`", $limit, $ids_only);
 	}
 
 	public static function getCount($event_name = null) {
