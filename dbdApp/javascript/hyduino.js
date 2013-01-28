@@ -31,16 +31,15 @@ var hyduino = {
 		}
 	},
 	handleEvents: function (event, data) {
-		switch (event) {
-			case 'power':
-				hyduino.power(data)
-		}
+//		switch (event) {
+//			case 'power':
+//				hyduino.power(data)
+//		}
 	},
 	startEventListener: function () {
 		var notifyr = new Notifyr(hyduino.notifyrApiKey, {ssl: true});
 		var channel = notifyr.subscribe('hyduino');
 		channel.listen(function(payload) {
-			payload = $.parseJSON(payload);
 			hyduino.handleEvents(payload.event, payload.data);
 		});
 	}
@@ -49,14 +48,14 @@ var hyduino = {
 //Handlebars.registerHelper('REALM', function (){
 //	return REALM.ucfirst();
 //});
-//
-//Handlebars.registerHelper('curtain', function (options){
-//	if ($this.curtain) {
-//		return options.fn(this);
-//	} else {
-//		return options.inverse(this);
-//	}
-//});
+
+Handlebars.registerHelper('power', function (options){
+	if ($this.power) {
+		return options.fn(this);
+	} else {
+		return options.inverse(this);
+	}
+});
 
 $(function (){
 	$(window).bind('statechange', function (e){
