@@ -5,12 +5,12 @@
 	}
 }
 
-@media (max-width: 979px) {
+/*@media (max-width: 979px) {*/
 
-	#powerButtons {
-		margin-right: 10px;
-	}
-}
+	/*#powerButtons {*/
+		/*margin-right: 10px;*/
+	/*}*/
+/*}*/
 
 @media (max-width: 767px) {
 
