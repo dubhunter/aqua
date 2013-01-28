@@ -24,6 +24,8 @@ dbdRequest::addRewrite('#^/v1/events/?$#i', '/v1EventsController');
 dbdRequest::addRewrite('#^/v1/events/([0-9]+)/?$#i', '/v1EventsInstanceController?id=$1');
 dbdRequest::addRewrite('#^/v1/triggers/?$#i', '/v1TriggersController');
 dbdRequest::addRewrite('#^/v1/triggers/([0-9]+)/?$#i', '/v1TriggersInstanceController?id=$1');
+dbdRequest::addRewrite('#^/v1/sms/?$#i', '/v1SmsController');
+//dbdRequest::addRewrite('#^/v1/voice/?$#i', '/v1VoiceController');
 
 
 dbdMVC::setDebugMode(DBD_DEBUG_JS | DBD_DEBUG_CSS);
