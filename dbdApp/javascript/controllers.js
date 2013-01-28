@@ -47,10 +47,8 @@ var pageController = hyduinoController.extend({
 		this._ensurePage();
 	},
 	_ensureNav: function () {
-		var data = {};
-		var selected = $this.controller.replace('Controller', '');
+		var data = {}, selected = $this.controller.replace('Controller', '');
 		data[selected] = true;
-		$.log(data);
 		if ($('#header').length == 0) {
 			bView.appendTo('header', 'body', data);
 		} else {
@@ -92,6 +90,8 @@ var timersController = pageController.extend({
 var alertsController = pageController.extend({
 	get: function () {
 		this._setTitle('Alerts');
-		bView.replaceInto('alerts', '#page');
+		hyTriggers.all().done(function (data) {
+			bView.replaceInto('alerts', '#page', data);
+		});
 	}
 });

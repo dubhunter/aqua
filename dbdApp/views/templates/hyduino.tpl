@@ -26,6 +26,7 @@
 
 	<%include file="home/dashboard.handlebars"%>
 	<%include file="home/timers.handlebars"%>
+	<%include file="home/alerts.handlebars"%>
 
 </body>
 </html>
