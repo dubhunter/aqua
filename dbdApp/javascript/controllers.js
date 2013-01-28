@@ -25,8 +25,10 @@ var hyduinoController = bController.extend({
 		});
 	},
 	_setTitle: function (title) {
-		if (title.length) {
+		if (title) {
 			title = ' - ' + title;
+		} else {
+			title = '';
 		}
 		this.parent('Hyduino' + title);
 	},
