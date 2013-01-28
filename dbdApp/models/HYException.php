@@ -7,18 +7,13 @@ class HYException extends dbdHoldableException {
 	const NOT_FOUND = 404;
 	const METHOD_NOT_ALLOWED = 405;
 
-	const AUTH_REQ = 1001;
-	const AUTH_MISMATCH = 1002;
-	const USER_NOT_FOUND = 1003;
-	const USER_PASS_CONFIRM_MISMATCH = 1003;
+	const EVENT_NAME = 1001;
+	const EVENT_DATA = 1002;
 
-	const EVENT_NAME = 1101;
-	const EVENT_DATA = 1102;
+	const POWER_STATUS = 1101;
 
-	const POWER_STATUS = 1201;
-
-	const TIME_START = 1301;
-	const TIME_STOP = 1302;
+	const TIME_START = 1201;
+	const TIME_STOP = 1202;
 
 	private static $msgs = array();
 
