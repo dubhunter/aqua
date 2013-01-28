@@ -4,7 +4,7 @@ class V1TimersController extends V1ApiController {
 	public function doGet() {
 		$page = $this->getParam('page') ?: 0;
 		$pagesize = $this->getParam('pagesize') ?: self::DEFAULT_PAGE_SIZE;
-		$timers = Timer::getAll(null, null, null, ($page * $pagesize) . ',' . $pagesize);
+		$timers = Timer::getAll(null, null, null, null, ($page * $pagesize) . ',' . $pagesize);
 		$data = array();
 		foreach ($timers as $t) {
 			$data[] = array(
@@ -19,7 +19,7 @@ class V1TimersController extends V1ApiController {
 
 		$total = Timer::getCount();
 
-		$this->dataList(array('timers' => $data), $total, '/v1/times');
+		$this->dataList(array('timers' => $data), $total, '/v1/timers');
 	}
 
 	public function doPost() {
