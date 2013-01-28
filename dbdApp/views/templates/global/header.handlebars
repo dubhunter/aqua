@@ -1,0 +1,22 @@
+<script id="viewHeader" type="text/x-handlebars-template">
+	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/"><i class="icon-tint"></i> <span class="hidden-phone">Hyduino</span></a>
+				<ul class="nav">
+					<li class="active"><a href="/"><i class="icon-dashboard"></i><span class="hidden-phone"> Home</span></a></li>
+					<li><a href="/schedule"><i class="icon-time"></i><span class="hidden-phone"> Schedule</span></a></li>
+					<li><a href="/triggers"><i class="icon-bullhorn"></i><span class="hidden-phone"> Alerts</span></a></li>
+				</ul>
+				{{view this 'powerButtons'}}
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="viewPowerButtons" type="text/x-handlebars-template">
+	<div id="powerButtons" class="btn-group pull-right">
+		<a href="/power" role="delete" class="btn btn-info {{^power}}active{{/power}}"><i class="icon-off"></i> Off</a>
+		<a href="/power" role="post" class="btn btn-info {{#power}}active{{/power}}">On <i class="icon-tint"></i></a>
+	</div>
+</script>

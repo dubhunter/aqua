@@ -1,6 +1,12 @@
 <?php
-class HYException extends dbdHoldableException
-{
+class HYException extends dbdHoldableException {
+
+	const BAD_REQUEST = 400;
+	const UNAUTHORIZED = 401;
+	const FORBIDDEN = 403;
+	const NOT_FOUND = 404;
+	const METHOD_NOT_ALLOWED = 405;
+
 	const AUTH_REQ = 1001;
 	const AUTH_MISMATCH = 1002;
 	const USER_NOT_FOUND = 1003;
@@ -16,24 +22,20 @@ class HYException extends dbdHoldableException
 
 	private static $msgs = array();
 
-	public function __construct($code = 0)
-	{
+	public function __construct($code = 0) {
 		parent::__construct(self::g($code), $code);
 	}
 
-	public static function setMsgArray($msgs)
-	{
+	public static function setMsgArray($msgs) {
 		self::$msgs = is_array($msgs) ? $msgs : array();
 	}
 
-	public static function g($code)
-	{
-		$key = "error".$code;
-		return array_key_exists($key, self::$msgs) ? self::$msgs[$key] : get_class().": Message for code ".$code." could not be found.";
+	public static function g($code) {
+		$key = "error" . $code;
+		return array_key_exists($key, self::$msgs) ? self::$msgs[$key] : get_class() . ": Message for code " . $code . " could not be found.";
 	}
 
-	public static function ensure($expr, $code)
-	{
+	public static function ensure($expr, $code) {
 		if (!$expr)
 			self::intercept(new self($code));
 	}

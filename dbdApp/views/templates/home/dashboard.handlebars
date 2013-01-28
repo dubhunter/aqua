@@ -1,0 +1,13 @@
+<script id="viewDashboard" type="text/x-handlebars-template">
+	<div id="dashboard" class="container">
+		<div class="span12">
+			<h1>Welcome to the Hyduino</h1>
+			<form name="power-switch" id="power-switch" method="post" action="/index/power">
+				<div class="btn-group">
+					<button name="status" value="off" class="btn btn-large{{^powerOn}} active{{/powerOn}}"><i class="icon-off"></i> Off</button>
+					<button name="status" value="on" class="btn btn-large{{#powerOn}} active{{/powerOn}}">On <i class="icon-tint"></i></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</script>

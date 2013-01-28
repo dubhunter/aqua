@@ -8,17 +8,17 @@ class CronController extends HYController {
 	}
 
 	public function doTimers() {
-		foreach (Times::toStart() as $times) {
+		foreach (Timer::toStart() as $timer) {
 			echo "Turning on!" . PHP_EOL;
 			Power::on();
-			$times->setRunning(1);
-			$times->save();
+			$timer->setRunning(1);
+			$timer->save();
 		}
-		foreach (Times::toStop() as $times) {
+		foreach (Timer::toStop() as $timer) {
 			echo "Turning off!" . PHP_EOL;
 			Power::off();
-			$times->setRunning(0);
-			$times->save();
+			$timer->setRunning(0);
+			$timer->save();
 		}
 	}
 

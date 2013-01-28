@@ -1,8 +1,8 @@
 <?php
-class Times extends dbdModel {
+class Timer extends dbdModel {
 
-	const TABLE_NAME = 'times';
-	const TABLE_KEY = 'time_id';
+	const TABLE_NAME = 'timers';
+	const TABLE_KEY = 'timer_id';
 	const TABLE_FIELD_START = 'time_start';
 	const TABLE_FIELD_STOP = 'time_stop';
 	const TABLE_FIELD_RUNNING = 'running';

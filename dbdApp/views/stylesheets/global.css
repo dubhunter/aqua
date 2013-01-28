@@ -1,3 +1,20 @@
-body {
-	padding-top: 60px;
+@media (min-width: 979px) {
+	body {
+		padding-top: 60px;
+	}
+}
+
+@media (max-width: 767px) {
+	a.brand {
+		color: #3a87ad !important;
+	}
+	a.brand:hover {
+		color: #ffffff !important;
+	}
+
+	.brand i,
+	.nav i {
+		font-size: 2em;
+		line-height: 10px;
+	}
 }
