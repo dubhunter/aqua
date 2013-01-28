@@ -1,0 +1,16 @@
+<script id="viewTimers" type="text/x-handlebars-template">
+	<div id="timers" class="container">
+		<h1 class="hidden-phone">Timers</h1>
+		<table class="table table-bordered">
+			{{#timers}}
+				<tr>
+					<td>{{start}}</td>
+					<td>{{stop}}</td>
+					<td><i class="icon-{{#if running}}tint{{else}}time{{/if}}"></i></td>
+					<td><a role="modal" href="/timers/{{id}}"><i class="icon-pencil"></i></a></td>
+					<td><a role="delete" href="/timers/{{id}}" class="text-error"><i class="icon-remove"></i></a></td>
+				</tr>
+			{{/timers}}
+		</table>
+	</div>
+</script>

@@ -4,9 +4,9 @@
 			<div class="container">
 				<a class="brand" href="/"><i class="icon-tint"></i> <span class="hidden-phone">Hyduino</span></a>
 				<ul class="nav">
-					<li class="active"><a href="/"><i class="icon-dashboard"></i><span class="hidden-phone"> Home</span></a></li>
-					<li><a href="/schedule"><i class="icon-time"></i><span class="hidden-phone"> Schedule</span></a></li>
-					<li><a href="/triggers"><i class="icon-bullhorn"></i><span class="hidden-phone"> Alerts</span></a></li>
+					<li{{#if home}} class="active"{{/if}}><a href="/"><i class="icon-bar-chart"></i><span class="hidden-phone"> Home</span></a></li>
+					<li{{#if timers}} class="active"{{/if}}><a href="/timers"><i class="icon-time"></i><span class="hidden-phone"> Timer</span></a></li>
+					<li{{#if alerts}} class="active"{{/if}}><a href="/alerts"><i class="icon-bullhorn"></i><span class="hidden-phone"> Alerts</span></a></li>
 				</ul>
 				{{view this 'powerButtons'}}
 			</div>
@@ -16,7 +16,7 @@
 
 <script id="viewPowerButtons" type="text/x-handlebars-template">
 	<div id="powerButtons" class="btn-group pull-right">
-		<a href="/power" role="delete" class="btn btn-info {{^power}}active{{/power}}"><i class="icon-off"></i> Off</a>
-		<a href="/power" role="post" class="btn btn-info {{#power}}active{{/power}}">On <i class="icon-tint"></i></a>
+		<a href="/power" role="delete" class="btn btn-inverse {{^power}}active{{/power}}"><i class="icon-off"></i> Off</a>
+		<a href="/power" role="post" class="btn btn-inverse {{#power}}active{{/power}}">On <i class="icon-tint"></i></a>
 	</div>
 </script>

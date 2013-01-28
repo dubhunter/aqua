@@ -7,7 +7,7 @@ class V1TimersInstanceController extends V1ApiController {
 			'id' => $timer->getID(),
 			'start' => $timer->getTimeStart(),
 			'stop' => $timer->getTimeStop(),
-			'running' => $timer->getRunning(),
+			'running' => $timer->isRunning(),
 			'date_created' => $timer->getDateCreated(),
 			'date_updated' => $timer->getDateUpdated(),
 		));
@@ -23,7 +23,7 @@ class V1TimersInstanceController extends V1ApiController {
 			'id' => $timer->getID(),
 			'start' => $timer->getTimeStart(),
 			'stop' => $timer->getTimeStop(),
-			'running' => $timer->getRunning(),
+			'running' => $timer->isRunning(),
 			'date_created' => $timer->getDateCreated(),
 			'date_updated' => $timer->getDateUpdated(),
 		));

@@ -24,15 +24,11 @@ var hyduinoController = bController.extend({
 			});
 		});
 	},
-	_ensureNav: function () {
-		if ($('#header').length == 0) {
-			bView.appendTo('header', 'body');
+	_setTitle: function (title) {
+		if (title) {
+			title = ' - ' + title;
 		}
-	},
-	_ensurePage: function () {
-		if ($('#page').length == 0) {
-			bView.appendTo('page', 'body');
-		}
+		this.parent('Hyduino' + title);
 	},
 	autoExec: function () {
 //		hyduino.power($this.power ? 'on' : 'off');
@@ -44,15 +40,27 @@ var hyduinoController = bController.extend({
 	}
 });
 
-var homeController = hyduinoController.extend({
+var pageController = hyduinoController.extend({
 	_init: function () {
 		this.parent();
 		this._ensureNav();
 		this._ensurePage();
 	},
-	get: function () {
-		this._setTitle('Hyduino');
-		bView.appendTo('dashboard', '#page');
+	_ensureNav: function () {
+		var data = {};
+		var selected = $this.controller.replace('Controller', '');
+		data[selected] = true;
+		$.log(data);
+		if ($('#header').length == 0) {
+			bView.appendTo('header', 'body', data);
+		} else {
+			bView.update('header', data);
+		}
+	},
+	_ensurePage: function () {
+		if ($('#page').length == 0) {
+			bView.appendTo('page', 'body');
+		}
 	}
 });
 
@@ -65,3 +73,25 @@ var powerController = hyduinoController.extend({
 	}
 });
 
+var homeController = pageController.extend({
+	get: function () {
+		this._setTitle();
+		bView.replaceInto('dashboard', '#page');
+	}
+});
+
+var timersController = pageController.extend({
+	get: function () {
+		this._setTitle('Timers');
+		hyTimers.all().done(function (data) {
+			bView.replaceInto('timers', '#page', data);
+		});
+	}
+});
+
+var alertsController = pageController.extend({
+	get: function () {
+		this._setTitle('Alerts');
+		bView.replaceInto('alerts', '#page');
+	}
+});

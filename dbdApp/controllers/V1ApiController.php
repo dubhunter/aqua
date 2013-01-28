@@ -73,6 +73,7 @@ class V1ApiController extends HYController {
 		$previouspageuri = $$page > 0 ? $this->buildUrl($baseuri, array_merge($params, array('page' => $page - 1))) : null;
 		$lastpageuri = $this->buildUrl($baseuri, array_merge($params, array('page' => $numpages - 1)));
 
+		$this->data($data);
 		$this->data(array(
 			'page' => $page,
 			'numpages' => $numpages,
@@ -85,7 +86,6 @@ class V1ApiController extends HYController {
 			'nextpageuri' => $nextpageuri,
 			'previouspageuri' => $previouspageuri,
 			'lastpageuri' => $lastpageuri,
-			'events' => $data,
 		));
 
 	}

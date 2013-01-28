@@ -11,7 +11,7 @@ class V1TimersController extends V1ApiController {
 				'id' => $t->getID(),
 				'start' => $t->getTimeStart(),
 				'stop' => $t->getTimeStop(),
-				'running' => $t->getRunning(),
+				'running' => $t->isRunning(),
 				'date_created' => $t->getDateCreated(),
 				'date_updated' => $t->getDateUpdated(),
 			);
@@ -19,7 +19,7 @@ class V1TimersController extends V1ApiController {
 
 		$total = Timer::getCount();
 
-		$this->dataList(array('times' => $data), $total, '/v1/times');
+		$this->dataList(array('timers' => $data), $total, '/v1/times');
 	}
 
 	public function doPost() {
@@ -32,7 +32,7 @@ class V1TimersController extends V1ApiController {
 			'id' => $timer->getID(),
 			'start' => $timer->getTimeStart(),
 			'stop' => $timer->getTimeStop(),
-			'running' => $timer->getRunning(),
+			'running' => $timer->isRunning(),
 			'date_created' => $timer->getDateCreated(),
 			'date_updated' => $timer->getDateUpdated(),
 		));

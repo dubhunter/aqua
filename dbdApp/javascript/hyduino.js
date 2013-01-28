@@ -13,11 +13,12 @@
 //@import views.js;
 //@import controllers.js;
 
-
 bRouter.routes = {
 	'^/$': 'homeController',
-	'^/schedule$': 'scheduleController',
-	'^/alerts$': 'alertController',
+	'^/timers': 'timersController',
+	'^/timers/new': 'timersCreateController',
+	'^/timers/(?<id>[0-9]+)': 'timersInstanceController',
+	'^/alerts$': 'alertsController',
 	'^/power$': 'powerController'
 };
 
