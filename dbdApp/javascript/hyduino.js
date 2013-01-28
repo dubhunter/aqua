@@ -31,10 +31,10 @@ var hyduino = {
 		}
 	},
 	handleEvents: function (event, data) {
-//		switch (event) {
-//			case 'power':
-//				hyduino.power(data)
-//		}
+		switch (event) {
+			case 'power':
+				hyduino.power(data)
+		}
 	},
 	startEventListener: function () {
 		var notifyr = new Notifyr(hyduino.notifyrApiKey, {ssl: true});
