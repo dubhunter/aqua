@@ -26,7 +26,7 @@ class Timer extends dbdModel {
 		if ($running !== null) {
 			$keys[self::TABLE_FIELD_RUNNING] = $running ? 1 : 0;
 		}
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_START . "`", $limit, $ids_only);
 	}
 
 	/**
@@ -52,14 +52,14 @@ class Timer extends dbdModel {
 		$keys[self::TABLE_FIELD_START] = array(date('H:i:s'), dbdDB::COMP_TYPE => dbdDB::COMP_LT);
 		$keys[self::TABLE_FIELD_STOP] = array(date('H:i:s'), dbdDB::COMP_TYPE => dbdDB::COMP_GT);
 		$keys[self::TABLE_FIELD_RUNNING] = 0;
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_START . "`", $limit, $ids_only);
 	}
 
 	public static function toStop($limit = null, $ids_only = false) {
 		$keys = array();
 		$keys[self::TABLE_FIELD_STOP] = array(date('H:i:s'), dbdDB::COMP_TYPE => dbdDB::COMP_LT);
 		$keys[self::TABLE_FIELD_RUNNING] = 1;
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE_CREATED . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_START . "`", $limit, $ids_only);
 	}
 
 	/**
