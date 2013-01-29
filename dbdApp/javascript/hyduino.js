@@ -52,7 +52,6 @@ var hyduino = {
 		var pusher = new Pusher(hyduino.pusherKey);
 		var channel = pusher.subscribe(hyduino.pusherChannel);
 		channel.bind(hyduino.pusherEvent, function(payload) {
-			$.log(payload);
 			hyduino.handleEvents(payload.event, payload.data);
 		});
 	}
