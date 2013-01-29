@@ -28,3 +28,7 @@
 		line-height: 8px;
 	}
 }
+
+#powerButtons {
+	margin-left: -10px;
+}
