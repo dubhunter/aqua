@@ -58,7 +58,7 @@ class Event extends dbdModel {
 	public function save($fields = array()) {
 		HYException::hold();
 		HYException::ensure(($this->hasEventName() && !isset($fields[self::TABLE_FIELD_NAME])) || !empty($fields[self::TABLE_FIELD_NAME]), HYException::EVENT_NAME);
-		HYException::ensure(($this->hasEventData() && !isset($fields[self::TABLE_FIELD_DATA])) || $fields[self::TABLE_FIELD_DATA], HYException::EVENT_DATA);
+		HYException::ensure(($this->hasEventData() && !isset($fields[self::TABLE_FIELD_DATA])) || isset($fields[self::TABLE_FIELD_DATA]), HYException::EVENT_DATA);
 		HYException::release();
 
 		if ($this->id == 0) {
