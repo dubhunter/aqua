@@ -8,7 +8,7 @@
 //@import handlebars.js;
 //@import bourbon.js;
 //@import bootstrap.js;
-//@import notifyr.js;
+//@import pusher.min.js;
 //@import models.js;
 //@import views.js;
 //@import controllers.js;
@@ -24,7 +24,9 @@ bRouter.routes = {
 
 var hyduino = {
 	intervalTime: 1000,
-	notifyrApiKey: 'CpBTzZAqxDRDVlLJJEKqOih0JZhmGdPA4F8Zbyr2ByA',
+	pusherKey: '562d02c947852152616a',
+	pusherChannel: 'hyduino',
+	pusherEvent: 'event',
 	power: function (status) {
 		$this.power = (status == 'on');
 		if ($('#powerButtons').length) {
@@ -38,9 +40,9 @@ var hyduino = {
 		}
 	},
 	startEventListener: function () {
-		var notifyr = new Notifyr(hyduino.notifyrApiKey, {ssl: true});
-		var channel = notifyr.subscribe('hyduino');
-		channel.listen(function(payload) {
+		var pusher = new Pusher(hyduino.pusherKey);
+		var channel = pusher.subscribe(hyduino.pusherChannel);
+		channel.bind(hyduino.pusherEvent, function(payload) {
 			hyduino.handleEvents(payload.event, payload.data);
 		});
 	}

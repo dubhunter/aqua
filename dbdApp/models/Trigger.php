@@ -21,7 +21,8 @@ class Trigger extends dbdModel {
 	const ALERT_TYPE_TWITTER = 3;
 	const ALERT_TYPE_WEBHOOK = 4;
 	const ALERT_TYPE_NOTIFYR = 5;
-	const ALERT_TYPE_EMAIL = 6;
+	const ALERT_TYPE_PUSHER = 6;
+	const ALERT_TYPE_EMAIL = 7;
 
 	/**
 	 * @param null $event_name
@@ -82,6 +83,9 @@ class Trigger extends dbdModel {
 				break;
 			case self::ALERT_TYPE_NOTIFYR:
 				AlertNotifyr::alert($this, $event);
+				break;
+			case self::ALERT_TYPE_PUSHER:
+				AlertPusher::alert($this, $event);
 				break;
 			case self::ALERT_TYPE_EMAIL:
 				AlertEmail::alert($this, $event);
