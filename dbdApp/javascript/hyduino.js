@@ -32,6 +32,15 @@ var hyduino = {
 		if ($('#powerButtons').length) {
 			bView.update('powerButtons');
 		}
+		if ($('.timersRow').length && !$('.timersRow').is('.editing')) {
+			bView.update('.timersRow');
+		}
+	},
+	light: function (status) {
+		$this.power = (status == 'on');
+		if ($('#powerButtons').length) {
+			bView.update('powerButtons');
+		}
 	},
 	handleEvents: function (event, data) {
 		switch (event) {
@@ -39,10 +48,11 @@ var hyduino = {
 				hyduino.power(data)
 		}
 	},
-	startEventListener: function () {
+	startEventSocket: function () {
 		var pusher = new Pusher(hyduino.pusherKey);
 		var channel = pusher.subscribe(hyduino.pusherChannel);
 		channel.bind(hyduino.pusherEvent, function(payload) {
+			$.log(payload);
 			hyduino.handleEvents(payload.event, payload.data);
 		});
 	}

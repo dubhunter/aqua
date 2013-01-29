@@ -1,16 +1,33 @@
 <script id="viewTimers" type="text/x-handlebars-template">
 	<div id="timers" class="container">
 		<h1 class="hidden-phone">Timers</h1>
-		<table class="table table-bordered">
-			{{#timers}}
-				<tr>
-					<td>{{start}}</td>
-					<td>{{stop}}</td>
-					<td><i class="icon-{{#if running}}tint{{else}}time{{/if}}"></i></td>
-					<td><a role="modal" href="/timers/{{id}}"><i class="icon-pencil"></i></a></td>
-					<td><a role="delete" href="/timers/{{id}}" class="text-error"><i class="icon-remove"></i></a></td>
-				</tr>
-			{{/timers}}
-		</table>
+		{{view timers 'timersRow'}}
+	</div>
+</script>
+
+<script id="viewTimersRow" type="text/x-handlebars-template">
+	<div class="timersRow alert alert-info {{#if editing}}editing{{/if}}">
+	{{#if editing}}
+		<div class="timersForm row-fluid">
+			<div class="span4">
+				<input type="time" name="time_start" id="time-start-{{id}}" value="{{start}}" />
+			</div>
+			<div class="span4">
+				<input type="time" name="time_stop" id="time-stop-{{id}}" value="{{stop}}" />
+			</div>
+			<div class="span4">
+				<a role="modal" href="/timers/{{id}}"><i class="icon-edit"></i></a>
+				<button type="submit" class="btn btn-success"><i class="icon-save"></i><span class="hidden-phone"> Save</span></button>
+				<a role="delete" href="/timers/{{id}}" class="btn btn-danger"><i class="icon-trash"></i><span class="hidden-phone"> Delete</span></a>
+			</div>
+		</div>
+	{{else}}
+		<div class="timersDisplay row-fluid">
+			<div class="span4">{{start}}</div>
+			<div class="span4">{{stop}}</div>
+			<div class="span2"><i class="icon-{{#if running}}tint{{else}}time{{/if}}"></i></div>
+			<div class="span2"><a href="/timers/{{id}}" class="btn btn-primary pull-right"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a></div>
+		</div>
+	{{/if}}
 	</div>
 </script>
