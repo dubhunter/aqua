@@ -3,16 +3,20 @@ class V1EventsController extends V1ApiController {
 
 	public function doGet() {
 		$event = $this->getParam("event");
-		$page = $this->getParam('page') ?: 0;
-		$pagesize = $this->getParam('pagesize') ?: self::DEFAULT_PAGE_SIZE;
-		$events = Event::getAll($event, ($page * $pagesize) . ',' . $pagesize);
+		$limit = $this->genLimit();
+		$date_from = $this->getParam('date_from');
+		$date_to = $this->getParam('date_to');
+		if ($date_from || $date_to) {
+			$limit = null;
+		}
+		$events = Event::getAll($event, $date_from, $date_to, $limit);
 		$data = array();
 		foreach ($events as $e) {
 			$data[] = array(
 				'id' => $e->getID(),
 				'event' => $e->getEventName(),
 				'data' => $e->getEventData(),
-				'date' => $e->getEventDate(),
+				'date' => dbdDB::datez($e->getEventDate()),
 			);
 		}
 
@@ -28,7 +32,7 @@ class V1EventsController extends V1ApiController {
 			'id' => $event->getID(),
 			'event' => $event->getEventName(),
 			'data' => $event->getEventData(),
-			'date' => $event->getEventDate(),
+			'date' => dbdDB::datez($event->getEventDate()),
 		));
 	}
 }

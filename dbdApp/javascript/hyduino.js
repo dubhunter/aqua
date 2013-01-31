@@ -9,6 +9,7 @@
 //@import bourbon.js;
 //@import bootstrap.js;
 //@import pusher.min.js;
+//@import highcharts.src.js;
 //@import models.js;
 //@import views.js;
 //@import controllers.js;
@@ -19,6 +20,7 @@ bRouter.routes = {
 	'^/timers/new': 'timersCreateController',
 	'^/timers/(?<id>[0-9]+)': 'timersInstanceController',
 	'^/alerts$': 'alertsController',
+	'^/charts': 'chartsController',
 	'^/power$': 'powerController'
 };
 

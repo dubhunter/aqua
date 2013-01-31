@@ -3,9 +3,8 @@ class V1TriggersController extends V1ApiController {
 
 	public function doGet() {
 		$event = $this->getParam("event");
-		$page = $this->getParam('page') ?: 0;
-		$pagesize = $this->getParam('pagesize') ?: self::DEFAULT_PAGE_SIZE;
-		$triggers = Trigger::getAll($event, null, ($page * $pagesize) . ',' . $pagesize);
+		$limit = $this->genLimit();
+		$triggers = Trigger::getAll($event, null, $limit);
 		$data = array();
 		foreach ($triggers as $t) {
 			$data[] = array(
@@ -18,10 +17,10 @@ class V1TriggersController extends V1ApiController {
 				'alert_msg' => $t->getAlertMsg(),
 				'alert_recipient' => $t->getAlertRecipient(),
 				'enabled' => $t->getEnabled(),
-				'last_alert_date' => $t->getLastAlertDate(),
+				'last_alert_date' => dbdDB::datez($t->getLastAlertDate()),
 				'max_alert_interval' => $t->getMaxAlertInterval(),
-				'date_created' => $t->getDateCreated(),
-				'date_updated' => $t->getDateUpdated(),
+				'date_created' => dbdDB::datez($t->getDateCreated()),
+				'date_updated' => dbdDB::datez($t->getDateUpdated()),
 			);
 		}
 
@@ -54,10 +53,10 @@ class V1TriggersController extends V1ApiController {
 			'alert_msg' => $trigger->getAlertMsg(),
 			'alert_recipient' => $trigger->getAlertRecipient(),
 			'enabled' => $trigger->getEnabled(),
-			'last_alert_date' => $trigger->getLastAlertDate(),
+			'last_alert_date' => dbdDB::datez($trigger->getLastAlertDate()),
 			'max_alert_interval' => $trigger->getMaxAlertInterval(),
-			'date_created' => $trigger->getDateCreated(),
-			'date_updated' => $trigger->getDateUpdated(),
+			'date_created' => dbdDB::datez($trigger->getDateCreated()),
+			'date_updated' => dbdDB::datez($trigger->getDateUpdated()),
 		));
 	}
 }

@@ -17,12 +17,28 @@ var hyPower = {
 };
 
 var hyEvents = {
-	all: function (page, perpage) {
+	all: function (event, page, perpage) {
 		var data = {
 			'page': page || 0
 		};
 		if (perpage) {
 			data.perpage = perpage;
+		}
+		if (event) {
+			data.event = event;
+		}
+		return hyduinoApi.get('/v1/events', data);
+	},
+	range: function (event, date_from, date_to) {
+		var data = {};
+		if (event) {
+			data.event = event;
+		}
+		if (date_from) {
+			data.date_from = date_from;
+		}
+		if (date_to) {
+			data.date_to = date_to;
 		}
 		return hyduinoApi.get('/v1/events', data);
 	},

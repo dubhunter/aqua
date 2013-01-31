@@ -7,7 +7,7 @@ class V1EventsInstanceController extends V1ApiController {
 			'id' => $event->getID(),
 			'event' => $event->getEventName(),
 			'data' => $event->getEventData(),
-			'date' => $event->getEventDate(),
+			'date' => dbdDB::datez($event->getEventDate()),
 		));
 	}
 }

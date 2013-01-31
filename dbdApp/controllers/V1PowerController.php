@@ -17,8 +17,8 @@ class V1PowerController extends V1ApiController {
 			'id' => $power->getID(),
 			'status' => $power->getStatus(),
 			'read' => $power->getRead(),
-			'date_created' => $power->getDateCreated(),
-			'date_updated' => $power->getDateUpdated(),
+			'date_created' => dbdDB::datez($power->getDateCreated()),
+			'date_updated' => dbdDB::datez($power->getDateUpdated()),
 		));
 	}
 }

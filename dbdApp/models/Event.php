@@ -16,10 +16,16 @@ class Event extends dbdModel {
 	 * @param bool $ids_only
 	 * @return array Event[]
 	 */
-	public static function getAll($name = null, $limit = null, $ids_only = false) {
+	public static function getAll($name = null, $date_from = null, $date_to = null, $limit = null, $ids_only = false) {
 		$keys = array();
 		if ($name !== null) {
 			$keys[self::TABLE_FIELD_NAME] = $name;
+		}
+		if ($date_from !== null) {
+			$keys[self::TABLE_FIELD_DATE] = array(dbdDB::date($date_from), dbdDB::COMP_TYPE => dbdDB::COMP_GTEQ);
+		}
+		if ($date_to !== null) {
+			$keys[self::TABLE_FIELD_DATE] = array(dbdDB::date($date_to), dbdDB::COMP_TYPE => dbdDB::COMP_LT);
 		}
 		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE . "`", $limit, $ids_only);
 	}

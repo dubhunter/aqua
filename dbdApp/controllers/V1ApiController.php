@@ -150,6 +150,12 @@ class V1ApiController extends HYController {
 		}
 	}
 
+	protected function genLimit() {
+		$page = $this->getParam('page') ?: 0;
+		$pagesize = $this->getParam('pagesize') ?: self::DEFAULT_PAGE_SIZE;
+		return ($page * $pagesize) . ',' . $pagesize;
+	}
+
 	public function doDefault() {
 		$this->e(new HYException(HYException::METHOD_NOT_ALLOWED));
 	}

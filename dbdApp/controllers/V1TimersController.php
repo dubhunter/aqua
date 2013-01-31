@@ -2,9 +2,8 @@
 class V1TimersController extends V1ApiController {
 
 	public function doGet() {
-		$page = $this->getParam('page') ?: 0;
-		$pagesize = $this->getParam('pagesize') ?: self::DEFAULT_PAGE_SIZE;
-		$timers = Timer::getAll(null, null, null, null, ($page * $pagesize) . ',' . $pagesize);
+		$limit = $this->genLimit();
+		$timers = Timer::getAll(null, null, null, null, $limit);
 		$data = array();
 		foreach ($timers as $t) {
 			$data[] = array(
@@ -12,8 +11,8 @@ class V1TimersController extends V1ApiController {
 				'start' => $t->getTimeStart(),
 				'stop' => $t->getTimeStop(),
 				'running' => $t->isRunning(),
-				'date_created' => $t->getDateCreated(),
-				'date_updated' => $t->getDateUpdated(),
+				'date_created' => dbdDB::datez($t->getDateCreated()),
+				'date_updated' => dbdDB::datez($t->getDateUpdated()),
 			);
 		}
 
@@ -33,8 +32,8 @@ class V1TimersController extends V1ApiController {
 			'start' => $timer->getTimeStart(),
 			'stop' => $timer->getTimeStop(),
 			'running' => $timer->isRunning(),
-			'date_created' => $timer->getDateCreated(),
-			'date_updated' => $timer->getDateUpdated(),
+			'date_created' => dbdDB::datez($timer->getDateCreated()),
+			'date_updated' => dbdDB::datez($timer->getDateUpdated()),
 		));
 	}
 }

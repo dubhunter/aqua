@@ -83,7 +83,7 @@ var homeController = pageController.extend({
 var timersController = pageController.extend({
 	get: function () {
 		this._setTitle('Timers');
-		hyTimers.all().done(function (data) {
+		return hyTimers.all().done(function (data) {
 			bView.replaceInto('timers', '#page', data);
 		});
 	}
@@ -92,8 +92,117 @@ var timersController = pageController.extend({
 var alertsController = pageController.extend({
 	get: function () {
 		this._setTitle('Alerts');
-		hyTriggers.all().done(function (data) {
+		return hyTriggers.all().done(function (data) {
 			bView.replaceInto('alerts', '#page', data);
+		});
+	}
+});
+
+var chartsController = pageController.extend({
+	_charts: {},
+	_chart: function ($chart, title, data){
+		var series = [{
+			'name': title,
+			'data': []
+		}];
+		for (var i = 0; i < data.events.length; i++) {
+			series[0].data.push([
+				(new Date(data.events[i].date)).getTime(),
+				parseInt(data.events[i].data)
+			]);
+		}
+		$.log(series);
+		this._charts[$chart.attr('id')].chart = new Highcharts.Chart({
+			credits: {enabled: false},
+//			colors: [
+//				'#0b7d82',
+//				'#ee3897'
+//			],
+			chart: {
+				width: parseFloat($chart.width()),
+				height: parseFloat($chart.height()),
+				renderTo: $chart.attr('id'),
+				defaultSeriesType: 'area'
+			},
+			xAxis: {
+				type: 'datetime',
+				dateTimeLabelFormats: { // don't display the dummy year
+					month: '%e. %b',
+					year: '%b'
+				}
+			},
+			plotOptions: {
+				area: {
+					fillColor: {
+						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+						stops: [
+							[0, Highcharts.getOptions().colors[0]],
+							[1, 'rgba(2,0,0,0)']
+						]
+					},
+					lineWidth: 1,
+					marker: {
+						enabled: false,
+						states: {
+							hover: {
+								enabled: true,
+								radius: 5
+							}
+						}
+					},
+					shadow: false,
+					states: {
+						hover: {
+							lineWidth: 1
+						}
+					},
+					threshold: null
+				}
+			},
+//			title: {
+//				text: title,
+//				x: -20 //center
+//			},
+//			xAxis: {
+////				categories: data.categories,
+////				tickInterval: 7,
+//				alternateGridColor: '#eef7f7'
+//			},
+//			yAxis: {
+//				title: {
+//					text: 'Volume'
+//				},
+//				plotLines: [{
+//					value: 0,
+//					width: 1,
+//					color: '#808080'
+//				}]
+//			},
+//			tooltip: {
+//				formatter: function() {
+//					return '<b>'+ this.series.name +'</b><br/>'+
+//						this.x +': '+ this.y;
+//				}
+//			},
+			series: series
+		});
+//		this._charts[$chart.attr('id')].loader.remove();
+	},
+	get: function () {
+		var self = this;
+		this._setTitle('Charts');
+		bView.replaceInto('charts', '#page');
+		var from = new Date();
+		from.setDate(from.getDate() - 1);
+		hyEvents.range('light', Math.round(from.getTime() / 1000)).done(function (data) {
+			var $chart = $('#graphLight');
+			self._charts[$chart.attr('id')] = {};
+			self._chart($chart, 'Light Sensor', data);
+		});
+		hyEvents.range('liquid', Math.round(from.getTime() / 1000)).done(function (data) {
+			var $chart = $('#graphLiquid');
+			self._charts[$chart.attr('id')] = {};
+			self._chart($chart, 'Liquid Sensor', data);
 		});
 	}
 });

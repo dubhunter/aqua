@@ -13,10 +13,10 @@ class V1TriggersInstanceController extends V1ApiController {
 			'alert_msg' => $trigger->getAlertMsg(),
 			'alert_recipient' => $trigger->getAlertRecipient(),
 			'enabled' => $trigger->getEnabled(),
-			'last_alert_date' => $trigger->getLastAlertDate(),
+			'last_alert_date' => dbdDB::datez($trigger->getLastAlertDate()),
 			'max_alert_interval' => $trigger->getMaxAlertInterval(),
-			'date_created' => $trigger->getDateCreated(),
-			'date_updated' => $trigger->getDateUpdated(),
+			'date_created' => dbdDB::datez($trigger->getDateCreated()),
+			'date_updated' => dbdDB::datez($trigger->getDateUpdated()),
 		));
 	}
 
@@ -44,10 +44,10 @@ class V1TriggersInstanceController extends V1ApiController {
 			'alert_msg' => $trigger->getAlertMsg(),
 			'alert_recipient' => $trigger->getAlertRecipient(),
 			'enabled' => $trigger->getEnabled(),
-			'last_alert_date' => $trigger->getLastAlertDate(),
+			'last_alert_date' => dbdDB::datez($trigger->getLastAlertDate()),
 			'max_alert_interval' => $trigger->getMaxAlertInterval(),
-			'date_created' => $trigger->getDateCreated(),
-			'date_updated' => $trigger->getDateUpdated(),
+			'date_created' => dbdDB::datez($trigger->getDateCreated()),
+			'date_updated' => dbdDB::datez($trigger->getDateUpdated()),
 		));
 	}
 }
