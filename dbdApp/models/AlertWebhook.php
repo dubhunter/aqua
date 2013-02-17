@@ -7,16 +7,10 @@ class AlertWebhook implements TriggerAlert {
 	 */
 	public static function alert(Trigger $trigger, Event $event) {
 		$msg = sprintf($trigger->getAlertMsg(), $event->getEventData());
-		$response = Purl::post($trigger->getAlertRecipient(), array('data' => array(
+		Purl::post($trigger->getAlertRecipient(), array('data' => array(
 			'event' => $event->getEventName(),
 			'data' => $event->getEventData(),
 			'msg' => $msg,
 		)));
-		dbdLog(json_encode(array(
-			'event' => $event->getEventName(),
-			'data' => $event->getEventData(),
-			'msg' => $msg,
-		)));
-		dbdLog($response);
 	}
 }

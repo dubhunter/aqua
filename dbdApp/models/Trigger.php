@@ -23,6 +23,7 @@ class Trigger extends dbdModel {
 	const ALERT_TYPE_NOTIFYR = 5;
 	const ALERT_TYPE_PUSHER = 6;
 	const ALERT_TYPE_EMAIL = 7;
+	const ALERT_TYPE_SPLUNK = 8;
 
 	/**
 	 * @param null $event_name
@@ -89,6 +90,9 @@ class Trigger extends dbdModel {
 				break;
 			case self::ALERT_TYPE_EMAIL:
 				AlertEmail::alert($this, $event);
+				break;
+			case self::ALERT_TYPE_SPLUNK:
+				AlertSplunk::alert($this, $event);
 				break;
 		}
 
