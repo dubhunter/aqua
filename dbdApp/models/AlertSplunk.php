@@ -19,7 +19,7 @@ class AlertSplunk implements TriggerAlert {
 		}
 
 		$msg = sprintf($trigger->getAlertMsg(), $event->getEventData());
-		$payload = date('D M d H:i:s e Y', strtotime($event->getEventDate()))
+		$payload = date('D M d H:i:s e Y', strtotime($event->getEventDate()));
 		$payload .= ' event=' . $event->getEventName();
 		$payload .= ' data=' . $event->getEventData();
 		$payload .= ' msg=' . $msg;
