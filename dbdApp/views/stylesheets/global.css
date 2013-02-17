@@ -35,6 +35,12 @@
     color: #333333;
     text-shadow: black 0 0 0; } }
 
+@media (max-width: 767px) {
+  #timers h1 {
+    font-size: 30px;
+    line-height: 30px;
+    margin-top: 0;
+    margin-bottom: 20px; } }
 #timers .timersRow {
   padding-right: 14px; }
   #timers .timersRow .timersDisplay {
