@@ -19,14 +19,17 @@ class AlertSplunk implements TriggerAlert {
 		}
 
 		$msg = sprintf($trigger->getAlertMsg(), $event->getEventData());
-		Purl::post('https://api.splunkstorm.com/1/inputs/http?index=' . SPLUNK_PROJECT_ID . '&sourcetype=syslog', array(
+		$payload = date('D M d H:i:s e Y', strtotime($event->getEventDate()))
+			. 'event=' . $event->getEventName()
+			. 'data=' . $event->getEventData()
+			. 'msg=' . $msg;
+		dbdLog($payload);
+		$response = Purl::post('https://api.splunkstorm.com/1/inputs/http?index=' . SPLUNK_PROJECT_ID . '&sourcetype=syslog', array(
 			'headers' => array(
 				'Authorization' => 'Basic ' . base64_encode('x:' . SPLUNK_ACCESS_TOKEN),
 			),
-			'data' => date('D M d H:i:s e Y', strtotime($event->getEventDate()))
-				. 'event=' . $event->getEventName()
-				. 'data=' . $event->getEventData()
-				. 'msg=' . $msg,
+			'data' => $payload,
 		));
+		dbdLog($response);
 	}
 }
