@@ -1,9 +1,11 @@
 body {
-  min-height: 480px; }
-  @media (min-width: 980px) {
-    body {
-      padding-top: 60px; } }
+  padding-top: 60px; }
 
+@media (max-width: 979px) {
+  .navbar-fixed-top {
+    position: fixed;
+    margin-left: 0;
+    margin-right: 0; } }
 @media (max-width: 767px) {
   a.brand {
     color: #3a87ad !important; }
@@ -42,7 +44,6 @@ body {
   #timers h1 {
     font-size: 30px;
     line-height: 30px;
-    margin-top: 0;
     margin-bottom: 20px; } }
 #timers .timersRow .timersDisplay {
   font-size: 30px;
