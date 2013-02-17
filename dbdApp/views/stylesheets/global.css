@@ -75,11 +75,11 @@
       text-align: right; }
     @media (max-width: 767px) {
       #timers .timersRow form .timersForm [class*="span"] {
-        margin-bottom: 10px;
         float: left;
         margin-left: 0; }
       #timers .timersRow form .timersForm .span4:first-child {
-        width: 50%; }
+        width: 50%;
+        margin-bottom: 10px; }
       #timers .timersRow form .timersForm .span3 {
         width: 50%;
         text-align: right; }
