@@ -7,7 +7,6 @@ var hyduinoController = bController.extend({
 			bView.replaceInto('throbber', '#hyduino');
 		});
 		if (bourbon.getEvent().type == 'statechange') {
-			window.scrollTo(0, 1);
 			bAjax.abortAll();
 			if ($this.controller && $this.method) {
 				bRunner.clearTimed($this.controller, $this.method);
@@ -42,6 +41,9 @@ var hyduinoController = bController.extend({
 //				bView.update($(this));
 //			});
 //		});
+		if (bourbon.getEvent().type == 'statechange') {
+			window.scrollTo(0, 1);
+		}
 	}
 });
 
