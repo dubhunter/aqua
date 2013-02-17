@@ -82,9 +82,11 @@
         margin-bottom: 10px; }
       #timers .timersRow form .timersForm .span3 {
         width: 50%;
-        text-align: right; }
+        text-align: right;
+        margin-bottom: 10px; }
       #timers .timersRow form .timersForm .span2 {
         width: 40%;
         text-align: left; }
       #timers .timersRow form .timersForm .span3:last-child {
+        margin-bottom: 0;
         width: 60%; } }
