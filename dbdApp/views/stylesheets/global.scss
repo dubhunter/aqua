@@ -58,7 +58,6 @@
 }
 
 #timers {
-
 	@media (max-width: 767px) {
 		h1 {
 			font-size: 30px;
@@ -69,10 +68,7 @@
 	}
 
 	.timersRow {
-
-		@media (max-width: 767px) {
-			padding: 12px;
-		}
+		padding: 12px;
 
 		.timersDisplay {
 			font-size: 30px;
@@ -108,10 +104,6 @@
 						margin-right: 10px;
 						line-height: 30px;
 						vertical-align: middle;
-
-						//@media (max-width: 767px) {
-						//	font-size: 18px;
-						//}
 					}
 				}
 
