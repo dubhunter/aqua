@@ -132,18 +132,19 @@
 
 				@media (max-width: 767px) {
 					[class*="span"] {
-						margin-bottom: 10px;
 						float: left;
 						margin-left: 0;
 					}
 
 					.span4:first-child {
 						width: 50%;
+						margin-bottom: 10px;
 					}
 
 					.span3 {
 						width: 50%;
 						text-align: right;
+						margin-bottom: 10px;
 					}
 
 					.span2 {
