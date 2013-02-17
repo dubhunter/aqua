@@ -1,4 +1,5 @@
 body {
+  min-height: 376px;
   padding-top: 60px; }
 
 @media (max-width: 979px) {
