@@ -68,8 +68,6 @@
 	}
 
 	.timersRow {
-		padding: 12px;
-
 		.timersDisplay {
 			font-size: 30px;
 			line-height: 30px;
@@ -121,12 +119,6 @@
 
 				.btn:last-child {
 					margin-left: 15px;
-				}
-
-
-				@media (max-width: 767px) {
-					[class*="span"] {
-					}
 				}
 
 				.span2,
