@@ -7,9 +7,9 @@
 
 /*@media (max-width: 979px) {*/
 
-	/*#powerButtons {*/
-		/*margin-right: 10px;*/
-	/*}*/
+/*#powerButtons {*/
+/*margin-right: 10px;*/
+/*}*/
 /*}*/
 
 @media (max-width: 767px) {
@@ -31,4 +31,33 @@
 
 #powerButtons {
 	margin-left: -10px;
+}
+
+.throbber {
+	text-align: center;
+}
+
+.throbber i {
+	font-size: 25em;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-name: pulse;
+	-webkit-animation-iteration-count: infinite;
+
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		color: #333333;
+		text-shadow: #000000 0 0 0;
+	}
+
+	50% {
+		color: #3a87ad;
+		text-shadow: #000000 0 0 20px;
+	}
+
+	100% {
+		color: #333333;
+		text-shadow: #000000 0 0 0;
+	}
 }

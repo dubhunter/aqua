@@ -17,7 +17,9 @@ var hyduinoController = bController.extend({
 			$this.url = this._getUrl();
 			$this.url_params = this._getUrl(true);
 		}
-		hyduino.startEventSocket();
+		bRunner.once('eventSocket', function () {
+			hyduino.startEventSocket();
+		});
 		return bRunner.once('powerStatus', function (){
 			hyPower.status().done(function (data){
 				hyduino.power(data.status);
