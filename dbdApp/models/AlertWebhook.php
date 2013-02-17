@@ -12,6 +12,11 @@ class AlertWebhook implements TriggerAlert {
 			'data' => $event->getEventData(),
 			'msg' => $msg,
 		)));
+		dbdLog(json_encode(array(
+			'event' => $event->getEventName(),
+			'data' => $event->getEventData(),
+			'msg' => $msg,
+		)));
 		dbdLog($response);
 	}
 }
