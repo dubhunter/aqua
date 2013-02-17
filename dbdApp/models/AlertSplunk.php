@@ -20,9 +20,9 @@ class AlertSplunk implements TriggerAlert {
 
 		$msg = sprintf($trigger->getAlertMsg(), $event->getEventData());
 		$payload = date('D M d H:i:s e Y', strtotime($event->getEventDate()))
-			. 'event=' . $event->getEventName()
-			. 'data=' . $event->getEventData()
-			. 'msg=' . $msg;
+		$payload .= ' event=' . $event->getEventName();
+		$payload .= ' data=' . $event->getEventData();
+		$payload .= ' msg=' . $msg;
 		dbdLog($payload);
 		$response = Purl::post('https://api.splunkstorm.com/1/inputs/http?index=' . SPLUNK_PROJECT_ID . '&sourcetype=syslog', array(
 			'headers' => array(
