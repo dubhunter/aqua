@@ -138,7 +138,7 @@ var chartsController = pageController.extend({
 		var value = 0;
 		var sum = 0;
 		var sumCount = 0;
-		var interval = 1800 * 1000; // 30 minutes
+		var interval = 1200 * 1000; // 20 minutes
 		var intervalCount = 0;
 		var start = new Date(data.events[0].date);
 		for (var i = 0; i < data.events.length; i++) {
@@ -238,7 +238,7 @@ var chartsController = pageController.extend({
 		this._setTitle('Charts');
 		bView.replaceInto('charts', '#page');
 		var from = new Date();
-		from.setDate(from.getDate() - 5);
+		from.setDate(from.getDate() - 1);
 		hyEvents.range('light', Math.round(from.getTime() / 1000)).done(function (data) {
 			var $chart = $('#graphLight');
 			self._charts[$chart.attr('id')] = {};
