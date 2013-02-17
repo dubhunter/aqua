@@ -107,11 +107,27 @@ var chartsController = pageController.extend({
 			'name': title,
 			'data': []
 		}];
+		var date;
+		var value = 0;
+		var sum = 0;
+		var sumCount = 0;
+		var interval = 1200 * 1000; // 20 minutes
+		var intervalCount = 0;
+		var start = new Date(data.events[0].date);
 		for (var i = 0; i < data.events.length; i++) {
-			series[0].data.push([
-				(new Date(data.events[i].date)).getTime(),
-				parseInt(data.events[i].data)
-			]);
+			date = new Date(data.events[i].date);
+			value = parseInt(data.events[i].data);
+			if (date.getTime() > (start.getTime() + (interval * intervalCount) + interval) || i == data.events.length - 1) {
+				series[0].data.push([
+					(start.getTime() + (interval * intervalCount)),
+					Math.round(sum / sumCount)
+				]);
+				sum = 0;
+				sumCount = 0;
+				intervalCount++;
+			}
+			sum += value;
+			sumCount++;
 		}
 		$.log(series);
 		this._charts[$chart.attr('id')].chart = new Highcharts.Chart({
@@ -124,7 +140,7 @@ var chartsController = pageController.extend({
 				width: parseFloat($chart.width()),
 				height: parseFloat($chart.height()),
 				renderTo: $chart.attr('id'),
-				defaultSeriesType: 'areaspline'
+				defaultSeriesType: 'area'
 			},
 			xAxis: {
 				type: 'datetime',
@@ -138,7 +154,7 @@ var chartsController = pageController.extend({
 					fillColor: {
 						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
 						stops: [
-							[0, Highcharts.getOptions().colors[0]],
+							[0, Highcharts.getOptions().colors[1]],
 							[1, 'rgba(2,0,0,0)']
 						]
 					},
@@ -158,7 +174,11 @@ var chartsController = pageController.extend({
 							lineWidth: 1
 						}
 					},
-					threshold: null
+					threshold: null,
+					series: {
+//						pointStart: start,
+						pointInterval: 3600 * 1000 // 20 min
+					}
 				}
 			},
 //			title: {

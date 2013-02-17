@@ -28,7 +28,7 @@ dbdRequest::addRewrite('#^/v1/sms/?$#i', '/v1SmsController');
 //dbdRequest::addRewrite('#^/v1/voice/?$#i', '/v1VoiceController');
 
 
-dbdMVC::setDebugMode(DBD_DEBUG_HTML);
+dbdMVC::setDebugMode(DBD_DEBUG_HTML | DBD_DEBUG_JS);
 
 dbdMVC::setErrorController('HYErrorController');
 dbdMVC::setFallbackController('HYController');
