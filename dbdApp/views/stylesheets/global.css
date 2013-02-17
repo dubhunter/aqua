@@ -1,6 +1,9 @@
-@media (min-width: 980px) {
-  body {
-    padding-top: 60px; } }
+body {
+  min-height: 480px; }
+  @media (min-width: 980px) {
+    body {
+      padding-top: 60px; } }
+
 @media (max-width: 767px) {
   a.brand {
     color: #3a87ad !important; }

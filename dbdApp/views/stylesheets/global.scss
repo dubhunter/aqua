@@ -1,6 +1,7 @@
-@media (min-width: 980px) {
+body {
+	min-height: 480px;
 
-	body {
+	@media (min-width: 980px) {
 		padding-top: 60px;
 	}
 }
