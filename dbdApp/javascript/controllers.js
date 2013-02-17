@@ -91,6 +91,27 @@ var timersController = pageController.extend({
 	}
 });
 
+var timersCreateController = pageController.extend({
+	post: function () {
+		hyTimers.create(this._getParams()).done(function (data){
+			bView.update($('form[action="/timers/new"]'), data);
+		});
+	}
+});
+
+var timersInstanceController = pageController.extend({
+	post: function () {
+		hyTimers.update(this._getParam('id'), this._getParams()).done(function (data){
+			bView.update($('form[action="/timers/' + data.id + '"]'), data);
+		});
+	},
+	destroy: function () {
+		hyTimers.remove(this._getParam('id'), this._getParams()).done(function (data){
+			$('form[action="/timers/' + data.id + '"]').parents('.timersRow').remove();
+		});
+	}
+});
+
 var alertsController = pageController.extend({
 	get: function () {
 		this._setTitle('Alerts');
@@ -111,12 +132,15 @@ var chartsController = pageController.extend({
 		var value = 0;
 		var sum = 0;
 		var sumCount = 0;
-		var interval = 1200 * 1000; // 20 minutes
+		var interval = 1800 * 1000; // 30 minutes
 		var intervalCount = 0;
 		var start = new Date(data.events[0].date);
 		for (var i = 0; i < data.events.length; i++) {
 			date = new Date(data.events[i].date);
 			value = parseInt(data.events[i].data);
+			if (isNaN(value)) {
+				continue;
+			}
 			if (date.getTime() > (start.getTime() + (interval * intervalCount) + interval) || i == data.events.length - 1) {
 				series[0].data.push([
 					(start.getTime() + (interval * intervalCount)),
@@ -132,10 +156,7 @@ var chartsController = pageController.extend({
 		$.log(series);
 		this._charts[$chart.attr('id')].chart = new Highcharts.Chart({
 			credits: {enabled: false},
-//			colors: [
-//				'#0b7d82',
-//				'#ee3897'
-//			],
+			colors: hyduino.highchartsColors,
 			chart: {
 				width: parseFloat($chart.width()),
 				height: parseFloat($chart.height()),
@@ -151,14 +172,14 @@ var chartsController = pageController.extend({
 			},
 			plotOptions: {
 				area: {
-					fillColor: {
-						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-						stops: [
-							[0, Highcharts.getOptions().colors[1]],
-							[1, 'rgba(2,0,0,0)']
-						]
-					},
-					lineWidth: 1,
+//					fillColor: {
+//						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+//						stops: [
+//							[0, hyduino.highchartsColors[0]],
+//							[1, 'rgba(2,0,0,0)']
+//						]
+//					},
+//					lineWidth: 2,
 					marker: {
 						enabled: false,
 						states: {
@@ -174,11 +195,7 @@ var chartsController = pageController.extend({
 							lineWidth: 1
 						}
 					},
-					threshold: null,
-					series: {
-//						pointStart: start,
-						pointInterval: 3600 * 1000 // 20 min
-					}
+					threshold: null
 				}
 			},
 //			title: {
@@ -215,7 +232,7 @@ var chartsController = pageController.extend({
 		this._setTitle('Charts');
 		bView.replaceInto('charts', '#page');
 		var from = new Date();
-		from.setDate(from.getDate() - 1);
+		from.setDate(from.getDate() - 7);
 		hyEvents.range('light', Math.round(from.getTime() / 1000)).done(function (data) {
 			var $chart = $('#graphLight');
 			self._charts[$chart.attr('id')] = {};

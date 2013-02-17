@@ -10,6 +10,7 @@ class V1TimersController extends V1ApiController {
 				'id' => $t->getID(),
 				'start' => $t->getTimeStart(),
 				'stop' => $t->getTimeStop(),
+				'enabled' => $t->isEnabled(),
 				'running' => $t->isRunning(),
 				'date_created' => dbdDB::datez($t->getDateCreated()),
 				'date_updated' => dbdDB::datez($t->getDateUpdated()),
@@ -26,11 +27,13 @@ class V1TimersController extends V1ApiController {
 		$timer = new Timer();
 		$timer->setTimeStart($this->getParam('time_start'));
 		$timer->setTimeStop($this->getParam('time_stop'));
+		$timer->setEnabled($this->getParam('enabled'));
 		$timer->save();
 		$this->data(array(
 			'id' => $timer->getID(),
 			'start' => $timer->getTimeStart(),
 			'stop' => $timer->getTimeStop(),
+			'enabled' => $timer->isEnabled(),
 			'running' => $timer->isRunning(),
 			'date_created' => dbdDB::datez($timer->getDateCreated()),
 			'date_updated' => dbdDB::datez($timer->getDateUpdated()),

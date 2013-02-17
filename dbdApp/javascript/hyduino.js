@@ -8,21 +8,22 @@
 //@import handlebars.js;
 //@import bourbon.js;
 //@import bootstrap.js;
+//@import bootstrapSwitch.js;
 //@import pusher.min.js;
 //@import highcharts.src.js;
-//@import highcharts.theme.dark.js;
 //@import models.js;
 //@import views.js;
 //@import controllers.js;
 
+
 bRouter.routes = {
 	'^/$': 'homeController',
-	'^/timers': 'timersController',
-	'^/timers/new': 'timersCreateController',
-	'^/timers/(?<id>[0-9]+)': 'timersInstanceController',
-	'^/alerts$': 'alertsController',
-	'^/charts': 'chartsController',
-	'^/power$': 'powerController'
+	'^/timers/?$': 'timersController',
+	'^/timers/new$': 'timersCreateController',
+	'^/timers/(?<id>[0-9]+)/?$': 'timersInstanceController',
+	'^/alerts/?$': 'alertsController',
+	'^/charts/?': 'chartsController',
+	'^/power/?$': 'powerController'
 };
 
 var hyduino = {
@@ -30,6 +31,9 @@ var hyduino = {
 	pusherKey: '562d02c947852152616a',
 	pusherChannel: 'hyduino',
 	pusherEvent: 'event',
+	highchartsColors: [
+		'#3a87ad'
+	],
 	power: function (status) {
 		$this.power = (status == 'on');
 		if ($('#powerButtons').length) {

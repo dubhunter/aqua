@@ -68,6 +68,9 @@ var hyTimers = {
 	},
 	update: function (id, data) {
 		return hyduinoApi.post('/v1/timers/' + id, data);
+	},
+	remove: function (id) {
+		return hyduinoApi.destroy('/v1/timers/' + id);
 	}
 };
 
@@ -89,5 +92,8 @@ var hyTriggers = {
 	},
 	update: function (id, data) {
 		return hyduinoApi.post('/v1/triggers/' + id, data);
+	},
+	remove: function (id) {
+		return hyduinoApi.destroy('/v1/triggers/' + id);
 	}
 };

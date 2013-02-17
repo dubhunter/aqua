@@ -1,63 +1,64 @@
 @media (min-width: 980px) {
-
-	body {
-		padding-top: 60px;
-	}
-}
-
-/*@media (max-width: 979px) {*/
-
-/*#powerButtons {*/
-/*margin-right: 10px;*/
-/*}*/
-/*}*/
-
+  body {
+    padding-top: 60px; } }
 @media (max-width: 767px) {
+  a.brand {
+    color: #3a87ad !important; }
+    a.brand:hover {
+      color: white !important; }
 
-	a.brand {
-		color: #3a87ad !important;
-	}
-
-	a.brand:hover {
-		color: #ffffff !important;
-	}
-
-	.brand i,
-	.nav i {
-		font-size: 1.25em;
-		line-height: 8px;
-	}
-}
-
+  .brand i,
+  .nav i {
+    font-size: 1.25em;
+    line-height: 8px; } }
 #powerButtons {
-	margin-left: -10px;
-}
+  margin-left: -10px; }
 
 .throbber {
-	text-align: center;
-}
-
-.throbber i {
-	font-size: 25em;
-	-webkit-animation-duration: 3s;
-	-webkit-animation-name: pulse;
-	-webkit-animation-iteration-count: infinite;
-
-}
+  text-align: center; }
+  .throbber i {
+    font-size: 25em;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-name: pulse;
+    -webkit-animation-iteration-count: infinite; }
 
 @-webkit-keyframes pulse {
-	0% {
-		color: #333333;
-		text-shadow: #000000 0 0 0;
-	}
+  0% {
+    color: #333333;
+    text-shadow: black 0 0 0; }
 
-	50% {
-		color: #3a87ad;
-		text-shadow: #000000 0 0 20px;
-	}
+  50% {
+    color: #3a87ad;
+    text-shadow: black 0 0 20px; }
 
-	100% {
-		color: #333333;
-		text-shadow: #000000 0 0 0;
-	}
-}
+  100% {
+    color: #333333;
+    text-shadow: black 0 0 0; } }
+
+#timers .timersRow {
+  padding-right: 14px; }
+  #timers .timersRow .timersDisplay {
+    font-size: 30px;
+    line-height: 30px; }
+    @media (max-width: 767px) {
+      #timers .timersRow .timersDisplay {
+        font-size: 18px; } }
+  #timers .timersRow form {
+    margin: 0; }
+    #timers .timersRow form .timersForm label {
+      margin: 0; }
+      #timers .timersRow form .timersForm label span {
+        font-size: 30px;
+        margin-right: 10px;
+        line-height: 30px;
+        vertical-align: middle; }
+    #timers .timersRow form .timersForm input[type="time"] {
+      font-size: 20px;
+      height: 30px;
+      padding: 0 6px;
+      width: auto; }
+    #timers .timersRow form .timersForm .btn:last-child {
+      margin-left: 15px; }
+    #timers .timersRow form .timersForm .span2,
+    #timers .timersRow form .timersForm .span3:last-child {
+      text-align: right; }

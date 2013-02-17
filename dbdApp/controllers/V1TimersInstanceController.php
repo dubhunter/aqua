@@ -19,6 +19,7 @@ class V1TimersInstanceController extends V1ApiController {
 		$timer = new Timer($this->getParam('id'));
 		$timer->setTimeStart($this->getParam('time_start'));
 		$timer->setTimeStop($this->getParam('time_stop'));
+		$timer->setEnabled($this->getParam('enabled'));
 		$timer->save();
 		$this->data(array(
 			'id' => $timer->getID(),
@@ -29,5 +30,11 @@ class V1TimersInstanceController extends V1ApiController {
 			'date_created' => dbdDB::datez($timer->getDateCreated()),
 			'date_updated' => dbdDB::datez($timer->getDateUpdated()),
 		));
+	}
+
+	public function doDelete() {
+		$timer = new Timer($this->getParam('id'));
+		$timer->delete();
+		$this->noRenderJson();
 	}
 }
