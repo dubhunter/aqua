@@ -124,7 +124,7 @@ var chartsController = pageController.extend({
 				width: parseFloat($chart.width()),
 				height: parseFloat($chart.height()),
 				renderTo: $chart.attr('id'),
-				defaultSeriesType: 'area'
+				defaultSeriesType: 'areaspline'
 			},
 			xAxis: {
 				type: 'datetime',
