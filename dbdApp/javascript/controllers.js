@@ -232,7 +232,7 @@ var chartsController = pageController.extend({
 		this._setTitle('Charts');
 		bView.replaceInto('charts', '#page');
 		var from = new Date();
-		from.setDate(from.getDate() - 7);
+		from.setDate(from.getDate() - 5);
 		hyEvents.range('light', Math.round(from.getTime() / 1000)).done(function (data) {
 			var $chart = $('#graphLight');
 			self._charts[$chart.attr('id')] = {};

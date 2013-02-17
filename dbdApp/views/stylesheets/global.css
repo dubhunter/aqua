@@ -17,7 +17,7 @@
 .throbber {
   text-align: center; }
   .throbber i {
-    font-size: 25em;
+    font-size: 15em;
     -webkit-animation-duration: 3s;
     -webkit-animation-name: pulse;
     -webkit-animation-iteration-count: infinite; }
@@ -42,7 +42,14 @@
     line-height: 30px; }
     @media (max-width: 767px) {
       #timers .timersRow .timersDisplay {
-        font-size: 18px; } }
+        font-size: 18px; }
+        #timers .timersRow .timersDisplay [class*="span"] {
+          float: left;
+          margin-left: 0; }
+        #timers .timersRow .timersDisplay .span4 {
+          width: 34%; }
+        #timers .timersRow .timersDisplay .span2 {
+          width: 16%; } }
   #timers .timersRow form {
     margin: 0; }
     #timers .timersRow form .timersForm label {
@@ -57,8 +64,27 @@
       height: 30px;
       padding: 0 6px;
       width: auto; }
+      @media (max-width: 767px) {
+        #timers .timersRow form .timersForm input[type="time"] {
+          font-size: 18px;
+          height: 26px; } }
     #timers .timersRow form .timersForm .btn:last-child {
       margin-left: 15px; }
     #timers .timersRow form .timersForm .span2,
     #timers .timersRow form .timersForm .span3:last-child {
       text-align: right; }
+    @media (max-width: 767px) {
+      #timers .timersRow form .timersForm [class*="span"] {
+        margin-bottom: 10px;
+        float: left;
+        margin-left: 0; }
+      #timers .timersRow form .timersForm .span4:first-child {
+        width: 50%; }
+      #timers .timersRow form .timersForm .span3 {
+        width: 50%;
+        text-align: right; }
+      #timers .timersRow form .timersForm .span2 {
+        width: 40%;
+        text-align: left; }
+      #timers .timersRow form .timersForm .span3:last-child {
+        width: 60%; } }
