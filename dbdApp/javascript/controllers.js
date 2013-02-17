@@ -96,6 +96,9 @@ var timersCreateController = pageController.extend({
 		hyTimers.create(this._getParams()).done(function (data){
 			bView.update($('form[action="/timers/new"]'), data);
 		});
+	},
+	destroy: function () {
+		$('form[action="/timers/new"]').parents('.timersRow').remove();
 	}
 });
 

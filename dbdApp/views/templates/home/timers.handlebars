@@ -6,7 +6,7 @@
 </script>
 
 <script id="viewTimersRow" type="text/x-handlebars-template">
-	<div class="timersRow alert alert-info {{#if editing}}editing{{/if}}">
+	<div class="timersRow well {{#if editing}}editing{{/if}}">
 	{{#if editing}}
 		<form name="timersForm" class="form-inline" action="/timers/{{id}}" method="post">
 			<div class="timersForm row-fluid">

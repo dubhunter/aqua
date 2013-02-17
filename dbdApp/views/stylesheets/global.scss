@@ -69,7 +69,10 @@
 	}
 
 	.timersRow {
-		padding-right: 14px;
+
+		@media (max-width: 767px) {
+			padding: 12px;
+		}
 
 		.timersDisplay {
 			font-size: 30px;
