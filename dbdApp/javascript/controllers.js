@@ -112,8 +112,9 @@ var timersInstanceController = pageController.extend({
 		});
 	},
 	destroy: function () {
-		hyTimers.remove(this._getParam('id'), this._getParams()).done(function (data){
-			$('form[action="/timers/' + data.id + '"]').parents('.timersRow').remove();
+		var id = this._getParam('id');
+		hyTimers.remove(id, this._getParams()).done(function (data){
+			$('form[action="/timers/' + id + '"]').parents('.timersRow').remove();
 		});
 	}
 });
