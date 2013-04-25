@@ -15,7 +15,6 @@ class V1TimersInstanceController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$timer = new Timer($this->getParam('id'));
 		$timer->setTimeStart($this->getParam('time_start'));
 		$timer->setTimeStop($this->getParam('time_stop'));

@@ -11,9 +11,13 @@ class Timer extends dbdModel {
 	const TABLE_FIELD_DATE_UPDATED = 'date_updated';
 
 	/**
-	 * @param null $read
+	 * @param null $time_start
+	 * @param null $time_stop
+	 * @param null $enabled
+	 * @param null $running
 	 * @param null $limit
 	 * @param bool $ids_only
+	 * @internal param null $read
 	 * @return array Power[]
 	 */
 	public static function getAll($time_start = null, $time_stop = null, $enabled = null, $running = null, $limit = null, $ids_only = false) {
@@ -34,7 +38,11 @@ class Timer extends dbdModel {
 	}
 
 	/**
-	 * @param null $read
+	 * @param null $time_start
+	 * @param null $time_stop
+	 * @param null $enabled
+	 * @param null $running
+	 * @internal param null $read
 	 * @return integer
 	 */
 	public static function getCount($time_start = null, $time_stop = null, $enabled = null, $running = null) {

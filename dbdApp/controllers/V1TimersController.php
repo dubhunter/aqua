@@ -23,11 +23,10 @@ class V1TimersController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$timer = new Timer();
 		$timer->setTimeStart($this->getParam('time_start'));
 		$timer->setTimeStop($this->getParam('time_stop'));
-		$timer->setEnabled($this->getParam('enabled'));
+		$timer->setEnabled($this->getParam('enabled') ? 1 : 0);
 		$timer->save();
 		$this->data(array(
 			'id' => $timer->getID(),
