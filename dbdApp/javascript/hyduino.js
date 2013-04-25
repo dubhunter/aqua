@@ -40,7 +40,7 @@ var hyduino = {
 			bView.update('powerButtons');
 		}
 		if ($('.timersRow').length && !$('.timersRow').is('.editing')) {
-			bView.update('.timersRow');
+			bView.update('timersRow');
 		}
 	},
 	light: function (status) {
