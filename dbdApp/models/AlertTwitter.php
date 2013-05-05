@@ -10,7 +10,7 @@ class AlertTwitter implements TriggerAlert {
 
 	/**
 	 * @throws dbdException
-	 * @return TwilioRestClient
+	 * @return Twitter
 	 */
 	protected static function getTwitterClient() {
 		if (self::$twitter_client === null) {
