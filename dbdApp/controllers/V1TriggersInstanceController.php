@@ -31,7 +31,6 @@ class V1TriggersInstanceController extends V1ApiController {
 		$trigger->setAlertMsg($this->getParam('alert_msg'));
 		$trigger->setAlertRecipient($this->getParam('alert_recipient'));
 		$trigger->setEnabled($this->getParam('enabled'));
-		$trigger->setLastAlertDate($this->getParam('last_alert_date'));
 		$trigger->setMaxAlertInterval($this->getParam('max_alert_interval'));
 		$trigger->save();
 		$this->data(array(
