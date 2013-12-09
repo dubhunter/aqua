@@ -113,7 +113,7 @@ var timersInstanceController = pageController.extend({
 	},
 	destroy: function () {
 		var id = this._getParam('id');
-		hyTimers.remove(id, this._getParams()).done(function (data){
+		hyTimers.remove(id).done(function (data){
 			$('form[action="/timers/' + id + '"]').parents('.timersRow').remove();
 		});
 	}
@@ -124,6 +124,32 @@ var alertsController = pageController.extend({
 		this._setTitle('Alerts');
 		return hyTriggers.all().done(function (data) {
 			bView.replaceInto('alerts', '#page', data);
+		});
+	}
+});
+
+var alertsCreateController = pageController.extend({
+	post: function () {
+		$.log(this._getParams());
+		hyTriggers.create(this._getParams()).done(function (data){
+			bView.update($('form[action="/alerts/new"]'), data);
+		});
+	},
+	destroy: function () {
+		$('form[action="/alerts/new"]').parents('.alertsRow').remove();
+	}
+});
+
+var alertsInstanceController = pageController.extend({
+	post: function () {
+		hyTriggers.update(this._getParam('id'), this._getParams()).done(function (data){
+			bView.update($('form[action="/alerts/' + data.id + '"]'), data);
+		});
+	},
+	destroy: function () {
+		var id = this._getParam('id');
+		hyTriggers.remove(id).done(function (data){
+			$('form[action="/alerts/' + id + '"]').parents('.alertsRow').remove();
 		});
 	}
 });

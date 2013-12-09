@@ -1,10 +1,120 @@
 <script id="viewAlerts" type="text/x-handlebars-template">
 	<div id="alerts" class="container">
-		<h1 class="hidden-phone">Alerts</h1>
-		<ul>
-			{{#triggers}}
-				<li>{{trigger_name}}</li>
-			{{/triggers}}
-		</ul>
+		<h1>Alerts <a role="new" class="btn btn-primary pull-right"><i class="icon-plus"></i> New Alert</a></h1>
+		{{view triggers 'alertsRow'}}
 	</div>
 </script>
+
+<script id="viewAlertsRow" type="text/x-handlebars-template">
+	<div class="alertsRow well well-small {{#if editing}}editing{{/if}}">
+	{{#if editing}}
+		<form name="alertsForm" class="form-inline" action="/alerts/{{id}}" method="post">
+			<div class="alertsForm row-fluid">
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Name</span>
+						<input type="text" name="trigger_name" id="trigger-name-{{id}}" value="{{trigger_name}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Event Name</span>
+						<input type="text" name="event_name" id="event-name-{{id}}" value="{{event_name}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Alert Message</span>
+						<input type="text" name="alert_msg" id="alert-message-{{id}}" value="{{alert_msg}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Alert Recipient</span>
+						<input type="text" name="alert_recipient" id="alert-recipient-{{id}}" value="{{alert_recipient}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Alert Type</span>
+						<select name="alert_type" id="alert-type-{{id}}">
+							{{{alertTypeOptions alert_type}}}
+						</select>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Trigger Type</span>
+						<select name="trigger_type" id="trigger-type-{{id}}">
+							{{{triggerTypeOptions trigger_type}}}
+						</select>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Trigger Value</span>
+						<input type="text" name="trigger_value" id="trigger-value-{{id}}" value="{{trigger_value}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Max Alert Interval</span>
+						<input type="text" name="max_alert_interval" id="max-alert-interval-{{id}}" value="{{max_alert_interval}}"/>
+					</label>
+				</div>
+				<div class="span2">
+					<div role="switch" class="switch" data-on="info" data-off="inverse">
+						<input type="checkbox" name="enabled" id="alert-enabled-{{id}}" value="1" {{#enabled}}checked="checked" {{/enabled}}/>
+					</div>
+				</div>
+				<div class="span3">
+					<a role="delete" href="/alerts/{{id}}" class="btn btn-danger"><i class="icon-trash"></i><span class="hidden-phone"> Delete</span></a>
+					<button type="submit" class="btn btn-success"><i class="icon-save"></i> Save</button>
+				</div>
+			</div>
+		</form>
+	{{else}}
+		<div class="alertsDisplay row-fluid">
+			<div class="span4">{{trigger_name}}</div>
+			<div class="span4">{{#if last_alert_date}}{{timepast last_alert_date}}{{else}}Never{{/if}}</div>
+			<div class="span1"><i class="icon-{{alertTypeIcon alert_type}}"></i></div>
+			<div class="span1"><i class="icon-{{#if enabled}}bullhorn{{else}}off{{/if}}"></i></div>
+			<div class="span2"><a role="edit" class="btn btn-info pull-right"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a></div>
+		</div>
+	{{/if}}
+	</div>
+</script>
+
+
+<!--
+id: 13
+trigger_name: "Broken Com: SMS Jimmy"
+last_alert_date: "2013-02-16 16:00:01 -08:00"
+enabled: "0"
+
+alert_msg: "I havn't heard from the Hyduino in over %d minutes."
+alert_recipient: "310-736-0600"
+alert_type: "1"
+
+event_name: "crickets"
+max_alert_interval: "1800"
+
+trigger_type: "0"
+trigger_value: null
+
+
+const TRIGGER_TYPE_EVENT = 0;
+const TRIGGER_TYPE_DATA_EQ_VALUE = 1;
+const TRIGGER_TYPE_DATA_NEQ_VALUE = 2;
+const TRIGGER_TYPE_DATA_GT_VALUE = 3;
+const TRIGGER_TYPE_DATA_LT_VALUE = 4;
+
+const ALERT_TYPE_SMS = 1;
+const ALERT_TYPE_CALL = 2;
+const ALERT_TYPE_TWITTER = 3;
+const ALERT_TYPE_WEBHOOK = 4;
+const ALERT_TYPE_NOTIFYR = 5;
+const ALERT_TYPE_PUSHER = 6;
+const ALERT_TYPE_EMAIL = 7;
+const ALERT_TYPE_SPLUNK = 8;
+-->

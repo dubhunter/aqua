@@ -99,3 +99,28 @@ var viewTimersRow = hyduinoView.extend({
 		});
 	}
 });
+
+var viewAlerts = hyduinoView.extend({
+	init: function () {
+		this.parent();
+		this.node.find('a@new').click(function (e) {
+			e.preventDefault();
+			bView.insertAfter('alertsRow', $(this).parent('h1'), {
+				id: 'new',
+				enabled: true,
+				editing: true
+			});
+		});
+	}
+});
+
+var viewAlertsRow = hyduinoView.extend({
+	init: function () {
+		this.parent();
+		this.node.find('@switch').bootstrapSwitch();
+		this.node.find('a@edit').click(function (e) {
+			e.preventDefault();
+			bView.update($(this), {editing: true}, true);
+		});
+	}
+});

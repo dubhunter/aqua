@@ -16,8 +16,8 @@ class V1TriggersController extends V1ApiController {
 				'alert_type' => $t->getAlertType(),
 				'alert_msg' => $t->getAlertMsg(),
 				'alert_recipient' => $t->getAlertRecipient(),
-				'enabled' => $t->getEnabled(),
-				'last_alert_date' => dbdDB::datez($t->getLastAlertDate()),
+				'enabled' => $t->isEnabled(),
+				'last_alert_date' => $t->getLastAlertDate() == '0000-00-00 00:00:00' ? null : dbdDB::datez($t->getLastAlertDate()),
 				'max_alert_interval' => $t->getMaxAlertInterval(),
 				'date_created' => dbdDB::datez($t->getDateCreated()),
 				'date_updated' => dbdDB::datez($t->getDateUpdated()),
@@ -30,7 +30,6 @@ class V1TriggersController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$trigger = new Trigger();
 		$trigger->setEventName($this->getParam('event_name'));
 		$trigger->setTriggerName($this->getParam('trigger_name'));
@@ -40,7 +39,7 @@ class V1TriggersController extends V1ApiController {
 		$trigger->setAlertMsg($this->getParam('alert_msg'));
 		$trigger->setAlertRecipient($this->getParam('alert_recipient'));
 		$trigger->setEnabled($this->getParam('enabled'));
-		$trigger->setLastAlertDate($this->getParam('last_alert_date'));
+		$trigger->setLastAlertDate('0000-00-00 00:00:00');
 		$trigger->setMaxAlertInterval($this->getParam('max_alert_interval'));
 		$trigger->save();
 		$this->data(array(
@@ -52,8 +51,8 @@ class V1TriggersController extends V1ApiController {
 			'alert_type' => $trigger->getAlertType(),
 			'alert_msg' => $trigger->getAlertMsg(),
 			'alert_recipient' => $trigger->getAlertRecipient(),
-			'enabled' => $trigger->getEnabled(),
-			'last_alert_date' => dbdDB::datez($trigger->getLastAlertDate()),
+			'enabled' => $trigger->isEnabled(),
+			'last_alert_date' => $trigger->getLastAlertDate() == '0000-00-00 00:00:00' ? null : dbdDB::datez($trigger->getLastAlertDate()),
 			'max_alert_interval' => $trigger->getMaxAlertInterval(),
 			'date_created' => dbdDB::datez($trigger->getDateCreated()),
 			'date_updated' => dbdDB::datez($trigger->getDateUpdated()),

@@ -27,6 +27,7 @@ class Trigger extends dbdModel {
 
 	/**
 	 * @param null $event_name
+	 * @param null $enabled
 	 * @param null $limit
 	 * @param bool $ids_only
 	 * @return array Trigger[]
