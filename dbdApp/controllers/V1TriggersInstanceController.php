@@ -50,4 +50,10 @@ class V1TriggersInstanceController extends V1ApiController {
 			'date_updated' => dbdDB::datez($trigger->getDateUpdated()),
 		));
 	}
+
+	public function doDelete() {
+		$trigger = new Trigger($this->getParam('id'));
+		$trigger->delete();
+		$this->noRenderJson();
+	}
 }
