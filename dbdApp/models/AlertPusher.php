@@ -2,7 +2,7 @@
 class AlertPusher implements TriggerAlert {
 
 	const PUSHER_CREDENTIALS = 'constant/pusher.inc';
-	const PUSHER_CHANNEL = 'hyduino';
+	const PUSHER_CHANNEL = 'aqua';
 	const PUSHER_EVENT = 'event';
 
 	/**

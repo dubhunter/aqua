@@ -1,10 +1,10 @@
-var hyduinoController = bController.extend({
+var aquaController = bController.extend({
 	_init: function () {
 		bRunner.once('throbber', function () {
-			bView.replaceInto('throbber', '#hyduino');
+			bView.replaceInto('throbber', '#aqua');
 		});
 		bRunner.once('throbber', function () {
-			bView.replaceInto('throbber', '#hyduino');
+			bView.replaceInto('throbber', '#aqua');
 		});
 		if (bourbon.getEvent().type == 'statechange') {
 			bAjax.abortAll();
@@ -18,11 +18,11 @@ var hyduinoController = bController.extend({
 			$this.url_params = this._getUrl(true);
 		}
 		bRunner.once('eventSocket', function () {
-			hyduino.startEventSocket();
+			aqua.startEventSocket();
 		});
 		return bRunner.once('powerStatus', function (){
 			hyPower.status().done(function (data){
-				hyduino.power(data.status);
+				aqua.power(data.status);
 			});
 		});
 	},
@@ -32,10 +32,10 @@ var hyduinoController = bController.extend({
 		} else {
 			title = '';
 		}
-		this.parent('Hyduino' + title);
+		this.parent('AquaPi' + title);
 	},
 	autoExec: function () {
-//		hyduino.power($this.power ? 'on' : 'off');
+//		aqua.power($this.power ? 'on' : 'off');
 //		bRunner.timed($this.controller, 'timePast', headsup.intervalTime, function (){
 //			$('.time').each(function (){
 //				bView.update($(this));
@@ -47,7 +47,7 @@ var hyduinoController = bController.extend({
 	}
 });
 
-var pageController = hyduinoController.extend({
+var pageController = aquaController.extend({
 	_init: function () {
 		this.parent();
 		this._ensureNav();
@@ -69,7 +69,7 @@ var pageController = hyduinoController.extend({
 	}
 });
 
-var powerController = hyduinoController.extend({
+var powerController = aquaController.extend({
 	post: function () {
 		hyPower.on();
 	},
@@ -189,7 +189,7 @@ var chartsController = pageController.extend({
 		$.log(series);
 		this._charts[$chart.attr('id')].chart = new Highcharts.Chart({
 			credits: {enabled: false},
-			colors: hyduino.highchartsColors,
+			colors: aqua.highchartsColors,
 			chart: {
 				width: parseFloat($chart.width()),
 				height: parseFloat($chart.height()),
@@ -208,7 +208,7 @@ var chartsController = pageController.extend({
 //					fillColor: {
 //						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
 //						stops: [
-//							[0, hyduino.highchartsColors[0]],
+//							[0, aqua.highchartsColors[0]],
 //							[1, 'rgba(2,0,0,0)']
 //						]
 //					},

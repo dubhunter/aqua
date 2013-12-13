@@ -1,6 +1,6 @@
-bView.DEFAULT = 'hyduinoView';
+bView.DEFAULT = 'aquaView';
 
-var hyduinoView = bView.extend({
+var aquaView = bView.extend({
 	init: function (){
 		this.initLinks();
 		this.initForms();
@@ -64,7 +64,7 @@ var hyduinoView = bView.extend({
 	}
 });
 
-var viewPowerButtons = hyduinoView.extend({
+var viewPowerButtons = aquaView.extend({
 	init: function () {
 		this.parent();
 		this.node.find('a').click(function (e) {
@@ -73,7 +73,7 @@ var viewPowerButtons = hyduinoView.extend({
 	}
 });
 
-var viewTimers = hyduinoView.extend({
+var viewTimers = aquaView.extend({
 	init: function () {
 		this.parent();
 		this.node.find('a@new').click(function (e) {
@@ -89,7 +89,7 @@ var viewTimers = hyduinoView.extend({
 	}
 });
 
-var viewTimersRow = hyduinoView.extend({
+var viewTimersRow = aquaView.extend({
 	init: function () {
 		this.parent();
 		this.node.find('@switch').bootstrapSwitch();
@@ -100,7 +100,7 @@ var viewTimersRow = hyduinoView.extend({
 	}
 });
 
-var viewAlerts = hyduinoView.extend({
+var viewAlerts = aquaView.extend({
 	init: function () {
 		this.parent();
 		this.node.find('a@new').click(function (e) {
@@ -114,7 +114,7 @@ var viewAlerts = hyduinoView.extend({
 	}
 });
 
-var viewAlertsRow = hyduinoView.extend({
+var viewAlertsRow = aquaView.extend({
 	init: function () {
 		this.parent();
 		this.node.find('@switch').bootstrapSwitch();

@@ -1,4 +1,4 @@
-hyduino
+aqua
 =======
 
-An arduino based hydroponic controller with web sockets and sms notifications.
+An raspberry pi based hydroponic controller.

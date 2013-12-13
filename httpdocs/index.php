@@ -30,12 +30,12 @@ dbdRequest::addRewrite('#^/v1/sms/?$#i', '/v1SmsController');
 
 dbdMVC::setDebugMode(DBD_DEBUG_HTML | DBD_DEBUG_JS);
 
-dbdMVC::setErrorController('HYErrorController');
-dbdMVC::setFallbackController('HYController');
+dbdMVC::setErrorController('APErrorController');
+dbdMVC::setFallbackController('APController');
 
 dbdMVC::setControllerSuffix('Controller');
 
-dbdMVC::setAppName('Hyduino');
+dbdMVC::setAppName('AquaPi');
 
 /**
  * Run dbdMVC application.

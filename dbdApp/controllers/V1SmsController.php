@@ -1,5 +1,5 @@
 <?php
-class V1SmsController extends HYController {
+class V1SmsController extends APController {
 
 	protected function init() {
 		$this->setTemplate('twiml/empty.tpl');

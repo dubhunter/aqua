@@ -1,5 +1,5 @@
 <?php
-class CronController extends HYController {
+class CronController extends APController {
 
 	const FIVE_MIN = 300;
 

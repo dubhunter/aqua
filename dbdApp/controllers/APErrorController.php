@@ -1,5 +1,5 @@
 <?php
-class HYErrorController extends HYController {
+class APErrorController extends APController {
 
 	public function doDefault() {
 		dbdError::doError($this);

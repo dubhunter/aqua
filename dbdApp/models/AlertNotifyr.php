@@ -2,7 +2,7 @@
 class AlertNotifyr implements TriggerAlert {
 
 	const NOTIFYR_CREDENTIALS = 'constant/notifyr.inc';
-	const NOTIFYR_CHANNEL = 'hyduino';
+	const NOTIFYR_CHANNEL = 'aqua';
 
 	/**
 	 * @var null|NotifyrClient

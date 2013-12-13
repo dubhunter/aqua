@@ -1,18 +1,18 @@
-var hyduinoApi = new bApi();
+var aquaApi = new bApi();
 
-var hyduinoApiOptions = function (){
-	return hyduinoApi.options('/*');
+var aquaApiOptions = function (){
+	return aquaApi.options('/*');
 };
 
 var hyPower = {
 	status: function () {
-		return hyduinoApi.get('/v1/power');
+		return aquaApi.get('/v1/power');
 	},
 	on: function () {
-		return hyduinoApi.post('/v1/power', {'status': 'on'});
+		return aquaApi.post('/v1/power', {'status': 'on'});
 	},
 	off: function () {
-		return hyduinoApi.post('/v1/power', {'status': 'off'});
+		return aquaApi.post('/v1/power', {'status': 'off'});
 	}
 };
 
@@ -27,7 +27,7 @@ var hyEvents = {
 		if (event) {
 			data.event = event;
 		}
-		return hyduinoApi.get('/v1/events', data);
+		return aquaApi.get('/v1/events', data);
 	},
 	range: function (event, date_from, date_to) {
 		var data = {};
@@ -40,13 +40,13 @@ var hyEvents = {
 		if (date_to) {
 			data.date_to = date_to;
 		}
-		return hyduinoApi.get('/v1/events', data);
+		return aquaApi.get('/v1/events', data);
 	},
 	get: function (id) {
-		return hyduinoApi.get('/v1/events/' + id);
+		return aquaApi.get('/v1/events/' + id);
 	},
 	create: function (data) {
-		return hyduinoApi.post('/v1/timers', data);
+		return aquaApi.post('/v1/timers', data);
 	}
 };
 
@@ -58,19 +58,19 @@ var hyTimers = {
 		if (perpage) {
 			data.perpage = perpage;
 		}
-		return hyduinoApi.get('/v1/timers', data);
+		return aquaApi.get('/v1/timers', data);
 	},
 	get: function (id) {
-		return hyduinoApi.get('/v1/timers/' + id);
+		return aquaApi.get('/v1/timers/' + id);
 	},
 	create: function (data) {
-		return hyduinoApi.post('/v1/timers', data);
+		return aquaApi.post('/v1/timers', data);
 	},
 	update: function (id, data) {
-		return hyduinoApi.post('/v1/timers/' + id, data);
+		return aquaApi.post('/v1/timers/' + id, data);
 	},
 	remove: function (id) {
-		return hyduinoApi.destroy('/v1/timers/' + id);
+		return aquaApi.destroy('/v1/timers/' + id);
 	}
 };
 
@@ -82,18 +82,18 @@ var hyTriggers = {
 		if (perpage) {
 			data.perpage = perpage;
 		}
-		return hyduinoApi.get('/v1/triggers', data);
+		return aquaApi.get('/v1/triggers', data);
 	},
 	get: function (id) {
-		return hyduinoApi.get('/v1/triggers/' + id);
+		return aquaApi.get('/v1/triggers/' + id);
 	},
 	create: function (data) {
-		return hyduinoApi.post('/v1/triggers', data);
+		return aquaApi.post('/v1/triggers', data);
 	},
 	update: function (id, data) {
-		return hyduinoApi.post('/v1/triggers/' + id, data);
+		return aquaApi.post('/v1/triggers/' + id, data);
 	},
 	remove: function (id) {
-		return hyduinoApi.destroy('/v1/triggers/' + id);
+		return aquaApi.destroy('/v1/triggers/' + id);
 	}
 };

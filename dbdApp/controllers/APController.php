@@ -1,12 +1,12 @@
 <?php
-class HYController extends dbdController {
+class APController extends dbdController {
 
 	protected function init() {
 		$this->view->left_delimiter = '<%';
 		$this->view->right_delimiter = '%>';
 
-		$this->view->addCss('hyduino.css');
-		$this->view->addJs('hyduino.js');
+		$this->view->addCss('aqua.css');
+		$this->view->addJs('aqua.js');
 
 		$this->view->config_load("errorMsgs.conf");
 		HYException::setMsgArray($this->view->get_config_vars());
@@ -14,7 +14,7 @@ class HYController extends dbdController {
 	}
 
 	public function doDefault() {
-		$this->setTemplate('hyduino.tpl');
+		$this->setTemplate('aqua.tpl');
 	}
 
 	public function __doAction() {

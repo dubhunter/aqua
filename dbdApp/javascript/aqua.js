@@ -28,10 +28,10 @@ bRouter.routes = {
 	'^/power/?$': 'powerController'
 };
 
-var hyduino = {
+var aqua = {
 	intervalTime: 1000,
 	pusherKey: '562d02c947852152616a',
-	pusherChannel: 'hyduino',
+	pusherChannel: 'aqua',
 	pusherEvent: 'event',
 	highchartsColors: [
 		'#3a87ad'
@@ -54,14 +54,14 @@ var hyduino = {
 	handleEvents: function (event, data) {
 		switch (event) {
 			case 'power':
-				hyduino.power(data)
+				aqua.power(data)
 		}
 	},
 	startEventSocket: function () {
-		var pusher = new Pusher(hyduino.pusherKey);
-		var channel = pusher.subscribe(hyduino.pusherChannel);
-		channel.bind(hyduino.pusherEvent, function(payload) {
-			hyduino.handleEvents(payload.event, payload.data);
+		var pusher = new Pusher(aqua.pusherKey);
+		var channel = pusher.subscribe(aqua.pusherChannel);
+		channel.bind(aqua.pusherEvent, function(payload) {
+			aqua.handleEvents(payload.event, payload.data);
 		});
 	}
 };

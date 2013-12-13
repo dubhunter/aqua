@@ -1,5 +1,5 @@
 <?php
-class V1ApiController extends HYController {
+class V1ApiController extends APController {
 
 	const DEFAULT_PAGE_SIZE = 50;
 
