@@ -41,7 +41,7 @@ class Trigger extends dbdModel {
 		if ($enabled !== null) {
 			$keys[self::TABLE_FIELD_ENABLED] = $enabled ? 1 : 0;
 		}
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_LAST_ALERT_DATE . " DESC`,`" . self::TABLE_FIELD_TRIGGER_NAME . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_LAST_ALERT_DATE . "` DESC,`" . self::TABLE_FIELD_TRIGGER_NAME . "`", $limit, $ids_only);
 	}
 
 	public static function getCount($event_name = null) {
