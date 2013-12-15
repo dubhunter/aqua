@@ -229,7 +229,9 @@ var chartsController = pageController.extend({
 					year: '%b'
 				}
 			},
-			yAxis: {},
+			yAxis: {
+				min: 0
+			},
 			plotOptions: {
 				area: {
 //					fillColor: {
