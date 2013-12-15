@@ -52,6 +52,7 @@ var aqua = {
 		}
 	},
 	handleEvents: function (event, data) {
+		$.log(event + ': ' + data);
 		switch (event) {
 			case 'power':
 				aqua.power(data)
