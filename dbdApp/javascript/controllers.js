@@ -172,7 +172,7 @@ var alertsInstanceController = pageController.extend({
 
 var chartsController = pageController.extend({
 	_charts: {},
-	_chart: function ($chart, title, data){
+	_chart: function ($chart, title, data, max){
 		var series = [{
 			'name': title,
 			'data': []
@@ -203,7 +203,7 @@ var chartsController = pageController.extend({
 			sumCount++;
 		}
 		$.log(series);
-		this._charts[$chart.attr('id')].chart = new Highcharts.Chart({
+		var options = {
 			credits: {enabled: false},
 			colors: aqua.highchartsColors,
 			chart: {
@@ -219,6 +219,7 @@ var chartsController = pageController.extend({
 					year: '%b'
 				}
 			},
+			yAxis: {},
 			plotOptions: {
 				area: {
 //					fillColor: {
@@ -273,7 +274,11 @@ var chartsController = pageController.extend({
 //				}
 //			},
 			series: series
-		});
+		};
+		if (max) {
+			options['yAxis']['max'] = max;
+		}
+		this._charts[$chart.attr('id')].chart = new Highcharts.Chart(options);
 //		this._charts[$chart.attr('id')].loader.remove();
 	},
 	get: function () {
@@ -290,7 +295,7 @@ var chartsController = pageController.extend({
 		hyEvents.range('liquid', Math.round(from.getTime() / 1000)).done(function (data) {
 			var $chart = $('#graphLiquid');
 			self._charts[$chart.attr('id')] = {};
-			self._chart($chart, 'Liquid Sensor', data);
+			self._chart($chart, 'Liquid Sensor', data, 500);
 		});
 	}
 });
