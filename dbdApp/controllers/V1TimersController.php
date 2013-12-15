@@ -9,13 +9,12 @@ class V1TimersController extends V1ApiController {
 			 * @var $a Timer
 			 * @var $b Timer
 			 */
-			if ($a->getMinutesUntilStart() == $b->getMinutesUntilStart()) {
+			if ($a->getTimeStart() == $b->getTimeStart()) {
 				return 0;
 			}
 			return $a->getMinutesUntilStart() < $b->getMinutesUntilStart() ? -1 : 1;
 		});
 		$data = array();
-		/** @var $t Timer */
 		foreach ($timers as $t) {
 			$data[] = array(
 				'id' => $t->getID(),
@@ -23,7 +22,6 @@ class V1TimersController extends V1ApiController {
 				'stop' => $t->getTimeStop(),
 				'enabled' => $t->isEnabled(),
 				'running' => $t->isRunning(),
-				'minutes_until_start' => $t->getMinutesUntilStart(),
 				'date_created' => dbdDB::datez($t->getDateCreated()),
 				'date_updated' => dbdDB::datez($t->getDateUpdated()),
 			);
@@ -46,7 +44,6 @@ class V1TimersController extends V1ApiController {
 			'stop' => $timer->getTimeStop(),
 			'enabled' => $timer->isEnabled(),
 			'running' => $timer->isRunning(),
-			'minutes_until_start' => $timer->getMinutesUntilStart(),
 			'date_created' => dbdDB::datez($timer->getDateCreated()),
 			'date_updated' => dbdDB::datez($timer->getDateUpdated()),
 		));

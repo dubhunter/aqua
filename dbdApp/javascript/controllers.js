@@ -36,11 +36,11 @@ var aquaController = bController.extend({
 	},
 	autoExec: function () {
 //		aqua.power($this.power ? 'on' : 'off');
-//		bRunner.timed($this.controller, 'timePast', headsup.intervalTime, function (){
-//			$('.time').each(function (){
-//				bView.update($(this));
-//			});
-//		});
+		bRunner.timed($this.controller, 'time', aqua.intervalTime, function (){
+			$('.time').each(function (){
+				bView.update($(this));
+			});
+		});
 		if (bourbon.getEvent().type == 'statechange') {
 			window.scrollTo(0, 1);
 		}
@@ -83,16 +83,16 @@ var homeController = pageController.extend({
 		this._setTitle();
 		var dash = {};
 		var timers = hyTimers.all(0, 1).done(function (data) {
-			var next = false;
+			var start = false;
 			if (data.timers.length > 0) {
-				next = data.timers[0].minutes_until_start * 60;
+				start = data.timers[0]['start'];
 			}
-			dash['next_run'] = next;
+			dash['start'] = start;
 		});
 		var events = hyEvents.all('liquid', 0, 1).done(function (data) {
 			var level = 0;
 			if (data.events.length > 0) {
-				level = data.events[0].data;
+				level = data.events[0]['data'];
 			}
 			dash['level'] = level / 500;
 		});

@@ -83,6 +83,17 @@ Handlebars.registerHelper('power', function (options){
 	}
 });
 
+Handlebars.registerHelper('timeUntil', function (time){
+	var parts = time.split(':');
+	var minutes = parseInt(parts[1]) + (parseInt(parts[0]) * 60);
+	var date = new Date();
+	var now = (date.getHours() * 60) + date.getMinutes();
+	if (minutes < now) {
+		minutes += 1440;
+	}
+	return $.timeLength((minutes - now) * 60, true, true);
+});
+
 Handlebars.registerHelper('alertTypeIcon', function (type, options){
 	switch (type) {
 		case '1': //sms

@@ -96,6 +96,10 @@ class Timer extends dbdModel {
 		parent::save($fields);
 	}
 
+	/**
+	 * Get the number of minutes until start
+	 * @return int
+	 */
 	public function getMinutesUntilStart() {
 		list($hours, $minutes) = explode(':', $this->getTimeStart());
 		$minutes += $hours * 60;
