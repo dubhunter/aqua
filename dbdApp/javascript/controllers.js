@@ -183,14 +183,14 @@ var chartsController = pageController.extend({
 		var sumCount = 0;
 		var interval = 1200 * 1000; // 20 minutes
 		var intervalCount = 0;
-		var start = data.events.length ? new Date(data.events[0].date) : new Date();
-		for (var i = 0; i < data.events.length; i++) {
+		var start = data.events.length ? new Date(data.events[data.events.length - 1].date) : new Date();
+		for (var i = data.events.length - 1; i >= 0; i--) {
 			date = new Date(data.events[i].date);
 			value = parseInt(data.events[i].data);
 			if (isNaN(value)) {
 				continue;
 			}
-			if (date.getTime() > (start.getTime() + (interval * intervalCount) + interval) || i == data.events.length - 1) {
+			if (date.getTime() > (start.getTime() + (interval * intervalCount) + interval) || i == 0) {
 				series[0].data.push([
 					(start.getTime() + (interval * intervalCount)),
 					Math.round(sum / sumCount)

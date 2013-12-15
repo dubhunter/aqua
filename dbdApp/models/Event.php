@@ -12,6 +12,8 @@ class Event extends dbdModel {
 
 	/**
 	 * @param null $name
+	 * @param null $date_from
+	 * @param null $date_to
 	 * @param null $limit
 	 * @param bool $ids_only
 	 * @return array Event[]
