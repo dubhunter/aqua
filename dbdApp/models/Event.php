@@ -27,7 +27,7 @@ class Event extends dbdModel {
 		if ($date_to !== null) {
 			$keys[self::TABLE_FIELD_DATE] = array(dbdDB::date($date_to), dbdDB::COMP_TYPE => dbdDB::COMP_LT);
 		}
-		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE . "`", $limit, $ids_only);
+		return parent::getAll($keys, "`" . self::TABLE_FIELD_DATE . "` DESC", $limit, $ids_only);
 	}
 
 	/**

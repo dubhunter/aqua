@@ -17,12 +17,12 @@ var hyPower = {
 };
 
 var hyEvents = {
-	all: function (event, page, perpage) {
+	all: function (event, page, pagesize) {
 		var data = {
 			'page': page || 0
 		};
-		if (perpage) {
-			data.perpage = perpage;
+		if (pagesize) {
+			data.pagesize = pagesize;
 		}
 		if (event) {
 			data.event = event;
@@ -51,12 +51,12 @@ var hyEvents = {
 };
 
 var hyTimers = {
-	all: function (page, perpage) {
+	all: function (page, pagesize) {
 		var data = {
 			'page': page || 0
 		};
-		if (perpage) {
-			data.perpage = perpage;
+		if (pagesize) {
+			data.pagesize = pagesize;
 		}
 		return aquaApi.get('/v1/timers', data);
 	},
@@ -75,12 +75,12 @@ var hyTimers = {
 };
 
 var hyTriggers = {
-	all: function (page, perpage) {
+	all: function (page, pagesize) {
 		var data = {
 			'page': page || 0
 		};
-		if (perpage) {
-			data.perpage = perpage;
+		if (pagesize) {
+			data.pagesize = pagesize;
 		}
 		return aquaApi.get('/v1/triggers', data);
 	},

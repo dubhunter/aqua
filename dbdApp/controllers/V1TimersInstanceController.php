@@ -9,6 +9,7 @@ class V1TimersInstanceController extends V1ApiController {
 			'stop' => $timer->getTimeStop(),
 			'enabled' => $timer->isEnabled(),
 			'running' => $timer->isRunning(),
+			'minutes_until_start' => $timer->getMinutesUntilStart(),
 			'date_created' => dbdDB::datez($timer->getDateCreated()),
 			'date_updated' => dbdDB::datez($timer->getDateUpdated()),
 		));
@@ -26,6 +27,7 @@ class V1TimersInstanceController extends V1ApiController {
 			'stop' => $timer->getTimeStop(),
 			'enabled' => $timer->isEnabled(),
 			'running' => $timer->isRunning(),
+			'minutes_until_start' => $timer->getMinutesUntilStart(),
 			'date_created' => dbdDB::datez($timer->getDateCreated()),
 			'date_updated' => dbdDB::datez($timer->getDateUpdated()),
 		));

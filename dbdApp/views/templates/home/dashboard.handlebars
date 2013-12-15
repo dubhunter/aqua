@@ -1,8 +1,16 @@
 <script id="viewDashboard" type="text/x-handlebars-template">
 	<div id="dashboard" class="container">
-		<div class="span12">
-			<h1>Welcome to the AquaPi</h1>
-			<p>Dashboard Soon...</p>
+		<h1>Welcome to the AquaPi</h1>
+		<div class="row-fluid">
+			<div class="well well-small span6">
+				<p class="lead">Next Run: {{#if next_run}}{{timelength next_run short-names=true lower=true}}{{else}}None{{/if}}</p>
+			</div>
+			<div class="well well-small span6">
+				<p class="lead">Water Level: {{percentage level}}</p>
+				<div class="progress">
+					<div class="bar" style="width: {{percentage level}};"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </script>

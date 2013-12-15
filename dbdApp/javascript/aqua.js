@@ -45,17 +45,25 @@ var aqua = {
 			bView.update('timersRow');
 		}
 	},
-	light: function (status) {
-		$this.power = (status == 'on');
-		if ($('#powerButtons').length) {
-			bView.update('powerButtons');
+	light: function (level) {
+	},
+	liquid: function (level) {
+		if ($('#dashboard').length) {
+			bView.update('dashboard', {'level': level / 500}, true);
 		}
 	},
 	handleEvents: function (event, data) {
 		$.log(event + ': ' + data);
 		switch (event) {
 			case 'power':
-				aqua.power(data)
+				aqua.power(data);
+				break;
+			case 'light':
+				aqua.light(data);
+				break;
+			case 'liquid':
+				aqua.liquid(data);
+				break;
 		}
 	},
 	startEventSocket: function () {

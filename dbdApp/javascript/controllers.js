@@ -81,7 +81,24 @@ var powerController = aquaController.extend({
 var homeController = pageController.extend({
 	get: function () {
 		this._setTitle();
-		bView.replaceInto('dashboard', '#page');
+		var dash = {};
+		var timers = hyTimers.all(0, 1).done(function (data) {
+			var next = false;
+			if (data.timers.length > 0) {
+				next = data.timers[0].minutes_until_start * 60;
+			}
+			dash['next_run'] = next;
+		});
+		var events = hyEvents.all('liquid', 0, 1).done(function (data) {
+			var level = 0;
+			if (data.events.length > 0) {
+				level = data.events[0].data;
+			}
+			dash['level'] = level / 500;
+		});
+		return $.when(timers, events).done(function (){
+			bView.replaceInto('dashboard', '#page', dash);
+		})
 	}
 });
 
@@ -130,7 +147,6 @@ var alertsController = pageController.extend({
 
 var alertsCreateController = pageController.extend({
 	post: function () {
-		$.log(this._getParams());
 		hyTriggers.create(this._getParams()).done(function (data){
 			bView.update($('form[action="/alerts/new"]'), data);
 		});

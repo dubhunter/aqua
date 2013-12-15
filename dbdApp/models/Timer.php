@@ -18,7 +18,7 @@ class Timer extends dbdModel {
 	 * @param null $limit
 	 * @param bool $ids_only
 	 * @internal param null $read
-	 * @return array Power[]
+	 * @return array Timer[]
 	 */
 	public static function getAll($time_start = null, $time_stop = null, $enabled = null, $running = null, $limit = null, $ids_only = false) {
 		$keys = array();
@@ -94,5 +94,15 @@ class Timer extends dbdModel {
 		}
 		$this->setDateUpdated(dbdDB::date());
 		parent::save($fields);
+	}
+
+	public function getMinutesUntilStart() {
+		list($hours, $minutes) = explode(':', $this->getTimeStart());
+		$minutes += $hours * 60;
+		$now = (date('H') * 60) + (int)date('i');
+		if ($minutes < $now) {
+			$minutes += 1440;
+		}
+		return $minutes - $now;
 	}
 }
