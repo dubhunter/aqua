@@ -99,3 +99,6 @@ body {
     #timers .timersRow form .timersForm .span3:last-child {
       margin-bottom: 0;
       width: 60%; } }
+
+#charts .graph {
+  margin-top: 30px; }

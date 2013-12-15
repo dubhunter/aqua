@@ -11,6 +11,7 @@
 //@import bootstrapSwitch.js;
 //@import pusher.min.js;
 //@import highcharts.src.js;
+//@import highcharts.theme.dark.js;
 //@import models.js;
 //@import views.js;
 //@import controllers.js;
