@@ -45,8 +45,20 @@ var aqua = {
 		if ($('.timersRow').length && !$('.timersRow').is('.editing')) {
 			bView.update('timersRow');
 		}
+		if ($('#dashboard').length) {
+			hyTimers.all(0, 1).done(function (data) {
+				var timer = false;
+				if (data.timers.length > 0) {
+					timer = data.timers[0];
+				}
+				bView.update('dashboard', {'timer': timer}, true);
+			});
+		}
 	},
-	light: function (level) {
+	light: function (light) {
+		if ($('#dashboard').length) {
+			bView.update('dashboard', {'light': light / 1000}, true);
+		}
 	},
 	liquid: function (level) {
 		if ($('#dashboard').length) {
@@ -73,6 +85,10 @@ var aqua = {
 		channel.bind(aqua.pusherEvent, function(payload) {
 			aqua.handleEvents(payload.event, payload.data);
 		});
+	},
+	timeToSeconds: function (time) {
+		var parts = time.split(':');
+		return (parseInt(parts[1]) + (parseInt(parts[0]) * 60)) * 60;
 	}
 };
 
@@ -85,14 +101,17 @@ Handlebars.registerHelper('power', function (options){
 });
 
 Handlebars.registerHelper('timeUntil', function (time){
-	var parts = time.split(':');
-	var minutes = parseInt(parts[1]) + (parseInt(parts[0]) * 60);
+	var seconds = aqua.timeToSeconds(time);
 	var date = new Date();
-	var now = (date.getHours() * 60) + date.getMinutes();
-	if (minutes < now) {
-		minutes += 1440;
+	var now = (((date.getHours() * 60) + date.getMinutes()) * 60) + date.getSeconds();
+	if (seconds < now) {
+		seconds += 86400;
 	}
-	return $.timeLength((minutes - now) * 60, true, true);
+	return $.timeLength(seconds - now, true, true);
+});
+
+Handlebars.registerHelper('timeDiff', function (start, stop){
+	return $.timeLength(aqua.timeToSeconds(stop) - aqua.timeToSeconds(start), true, true);
 });
 
 Handlebars.registerHelper('alertTypeIcon', function (type, options){

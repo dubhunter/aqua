@@ -64,6 +64,14 @@ body {
 	}
 }
 
+#dashboard {
+	.well {
+		p:last-child {
+			margin-bottom: 11px;
+		}
+	}
+}
+
 #timers {
 	@media (max-width: 767px) {
 		h1 {

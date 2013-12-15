@@ -41,6 +41,9 @@ body {
     color: #333333;
     text-shadow: black 0 0 0; } }
 
+#dashboard .well p:last-child {
+  margin-bottom: 11px; }
+
 @media (max-width: 767px) {
   #timers h1 {
     font-size: 30px;

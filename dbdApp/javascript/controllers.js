@@ -82,21 +82,28 @@ var homeController = pageController.extend({
 	get: function () {
 		this._setTitle();
 		var dash = {};
-		var timers = hyTimers.all(0, 1).done(function (data) {
-			var start = false;
+		var timerFetch = hyTimers.all(0, 1).done(function (data) {
+			var timer = false;
 			if (data.timers.length > 0) {
-				start = data.timers[0]['start'];
+				timer = data.timers[0];
 			}
-			dash['start'] = start;
+			dash['timer'] = timer;
 		});
-		var events = hyEvents.all('liquid', 0, 1).done(function (data) {
+		var liquidFetch = hyEvents.all('liquid', 0, 1).done(function (data) {
 			var level = 0;
 			if (data.events.length > 0) {
 				level = data.events[0]['data'];
 			}
 			dash['level'] = level / 500;
 		});
-		return $.when(timers, events).done(function (){
+		var lightFetch = hyEvents.all('light', 0, 1).done(function (data) {
+			var light = 0;
+			if (data.events.length > 0) {
+				light = data.events[0]['data'];
+			}
+			dash['light'] = light / 1000;
+		});
+		return $.when(timerFetch, liquidFetch, lightFetch).done(function (){
 			bView.replaceInto('dashboard', '#page', dash);
 		})
 	}
