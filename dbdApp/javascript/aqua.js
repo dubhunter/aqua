@@ -107,7 +107,12 @@ Handlebars.registerHelper('timeUntil', function (time){
 	if (seconds < now) {
 		seconds += 86400;
 	}
-	return $.timeLength(seconds - now, true, true);
+	var diff = seconds - now;
+	var len = $.timeLength(diff, true, true);
+	if (diff > 3600) {
+		len = len.replace(/[0-9]+ secs?$/, '');
+	}
+	return len;
 });
 
 Handlebars.registerHelper('timeDiff', function (start, stop){
