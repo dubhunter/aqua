@@ -198,6 +198,9 @@ var chartsController = pageController.extend({
 				sum = 0;
 				sumCount = 0;
 				intervalCount++;
+				if (max && value > max) {
+					max = value;
+				}
 			}
 			sum += value;
 			sumCount++;
