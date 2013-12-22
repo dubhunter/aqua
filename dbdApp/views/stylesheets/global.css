@@ -16,7 +16,12 @@ body {
   .brand i,
   .nav i {
     font-size: 1.25em;
-    line-height: 8px; } }
+    line-height: 8px; }
+
+  h1 {
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 20px; } }
 #powerButtons {
   margin-left: -10px; }
 
@@ -44,11 +49,13 @@ body {
 #dashboard .well p:last-child {
   margin-bottom: 11px; }
 
-@media (max-width: 767px) {
-  #timers h1 {
-    font-size: 30px;
-    line-height: 30px;
-    margin-bottom: 20px; } }
+#alerts .alertsRow .alertsDisplay {
+  font-size: 30px;
+  line-height: 30px; }
+  @media (max-width: 767px) {
+    #alerts .alertsRow .alertsDisplay {
+      font-size: 18px; } }
+
 #timers .timersRow .timersDisplay {
   font-size: 30px;
   line-height: 30px; }

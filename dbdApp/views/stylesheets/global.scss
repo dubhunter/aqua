@@ -4,7 +4,6 @@ body {
 }
 
 @media (max-width: 979px) {
-
 	.navbar-fixed-top {
 		position: fixed;
 		margin-left: 0;
@@ -13,7 +12,6 @@ body {
 }
 
 @media (max-width: 767px) {
-
 	a.brand {
 		color: #3a87ad !important;
 
@@ -28,6 +26,12 @@ body {
 			font-size: 1.25em;
 			line-height: 8px;
 		}
+	}
+
+	h1 {
+		font-size: 30px;
+		line-height: 30px;
+		margin-bottom: 20px;
 	}
 }
 
@@ -72,15 +76,75 @@ body {
 	}
 }
 
-#timers {
-	@media (max-width: 767px) {
-		h1 {
+#alerts {
+	.alertsRow {
+		.alertsDisplay {
 			font-size: 30px;
 			line-height: 30px;
-			margin-bottom: 20px;
-		}
-	}
 
+			@media (max-width: 767px) {
+				font-size: 18px;
+
+//				[class*="span"] {
+//					float: left;
+//					margin-left: 0;
+//				}
+//
+//				.span4 {
+//					width: 34%;
+//				}
+//
+//				.span2 {
+//					width: 16%;
+//				}
+			}
+		}
+
+//		form {
+//			margin: 0;
+//
+//			.alertsForm {
+//				label {
+//					margin: 0;
+//
+//					span {
+//						font-size: 30px;
+//						margin-right: 10px;
+//						line-height: 30px;
+//						vertical-align: middle;
+//					}
+//				}
+//
+//				input,select {
+//					font-size: 20px;
+//					height: 29px;
+//					padding: 0 6px;
+//					width: auto;
+//
+//					@media (max-width: 767px) {
+//						font-size: 18px;
+//						height: 26px;
+//					}
+//				}
+//
+//				select {
+//					color: #52575c;
+//				}
+//
+//				.btn:last-child {
+//					margin-left: 15px;
+//				}
+//
+//				.span2,
+//				.span3:last-child {
+//					text-align: right;
+//				}
+//			}
+//		}
+	}
+}
+
+#timers {
 	.timersRow {
 		.timersDisplay {
 			font-size: 30px;
