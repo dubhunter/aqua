@@ -2,26 +2,38 @@
 	<div id="dashboard" class="container">
 		<h1>Welcome to the AquaPi</h1>
 		<div class="row-fluid">
-			<div class="well well-small span4">
-				<p class="lead">
-					Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeUntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
-				</p>
-				<p class="lead">
-					Run Time: {{#if timer}}{{#if timer.running}}<span class="time">{{timeUntil timer.stop}}</span>{{else}}{{timeDiff timer.start timer.stop}}{{/if}}{{else}}<em>None</em>{{/if}}
-				</p>
-			</div>
-			<div class="well well-small span4">
-				<p class="lead">Water Level: {{percentage level}}</p>
-				<div class="progress">
-					<div class="bar" style="width: {{percentage level}};"></div>
-				</div>
-			</div>
-			<div class="well well-small span4">
-				<p class="lead">Light Level: {{percentage light}}</p>
-				<div class="progress">
-					<div class="bar bar-warning" style="width: {{percentage light}};"></div>
-				</div>
-			</div>
+			{{view 'dashboardTimer'}}
+			{{view 'dashboardWater'}}
+			{{view 'dashboardLight'}}
+		</div>
+	</div>
+</script>
+
+<script id="viewDashboardTimer" type="text/x-handlebars-template">
+	<div id="dashboardTimer" class="well well-small span4">
+		<p class="lead">
+			Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeUntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
+		</p>
+		<p class="lead">
+			Run Time: {{#if timer}}{{#if timer.running}}<span class="time">{{timeUntil timer.stop}}</span>{{else}}{{timeDiff timer.start timer.stop}}{{/if}}{{else}}<em>None</em>{{/if}}
+		</p>
+	</div>
+</script>
+
+<script id="viewDashboardWater" type="text/x-handlebars-template">
+	<div id="dashboardWater" class="well well-small span4">
+		<p class="lead">Water Level: {{percentage level}}</p>
+		<div class="progress{{#if timer.running}} progress-striped active{{/if}}">
+			<div class="bar" style="width: {{percentage level}};"></div>
+		</div>
+	</div>
+</script>
+
+<script id="viewDashboardLight" type="text/x-handlebars-template">
+	<div id="dashboardLight" class="well well-small span4">
+		<p class="lead">Light Level: {{percentage light}}</p>
+		<div class="progress progress-striped">
+			<div class="bar bar-warning" style="width: {{percentage light}};"></div>
 		</div>
 	</div>
 </script>
