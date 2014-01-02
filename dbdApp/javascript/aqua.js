@@ -100,7 +100,7 @@ Handlebars.registerHelper('power', function (options){
 	}
 });
 
-Handlebars.registerHelper('timeUntil', function (time){
+Handlebars.registerHelper('timeuntil', function (time){
 	var seconds = aqua.timeToSeconds(time);
 	var date = new Date();
 	var now = (((date.getHours() * 60) + date.getMinutes()) * 60) + date.getSeconds();
@@ -115,7 +115,7 @@ Handlebars.registerHelper('timeUntil', function (time){
 	return len;
 });
 
-Handlebars.registerHelper('timeDiff', function (start, stop){
+Handlebars.registerHelper('timediff', function (start, stop){
 	return $.timeLength(aqua.timeToSeconds(stop) - aqua.timeToSeconds(start), true, true);
 });
 
@@ -142,42 +142,11 @@ Handlebars.registerHelper('alertTypeIcon', function (type, options){
 	}
 });
 
-Handlebars.registerHelper('alertTypeOptions', function (type, options){
-	var html = '';
-	html += '<option value="1"' + (type == '1' ? ' selected="selected"' : '') + '>SMS</option>';
-	html += '<option value="2"' + (type == '2' ? ' selected="selected"' : '') + '>Call</option>';
-	html += '<option value="3"' + (type == '3' ? ' selected="selected"' : '') + '>Twitter</option>';
-	html += '<option value="4"' + (type == '4' ? ' selected="selected"' : '') + '>Webhook</option>';
-	html += '<option value="5"' + (type == '5' ? ' selected="selected"' : '') + '>Notifyr</option>';
-	html += '<option value="6"' + (type == '6' ? ' selected="selected"' : '') + '>Pusher</option>';
-	html += '<option value="7"' + (type == '7' ? ' selected="selected"' : '') + '>Email</option>';
-	html += '<option value="8"' + (type == '8' ? ' selected="selected"' : '') + '>Splunk</option>';
-	return html;
-});
-
-Handlebars.registerHelper('triggerTypeIcon', function (type, options){
-	switch (type) {
-		case '1': //data = value
-			return 'data = value';
-		case '2': //data != value
-			return 'data != value';
-		case '3': //data > value
-			return 'data > value';
-		case '4': //data < value
-			return 'data < value';
-		default:
-			return 'event';
-	}
-});
-
-Handlebars.registerHelper('triggerTypeOptions', function (type, options){
-	var html = '';
-	html += '<option value="0"' + (type == '0' ? ' selected="selected"' : '') + '>Event</option>';
-	html += '<option value="1"' + (type == '1' ? ' selected="selected"' : '') + '>Data == Value</option>';
-	html += '<option value="2"' + (type == '2' ? ' selected="selected"' : '') + '>Data != Value</option>';
-	html += '<option value="3"' + (type == '3' ? ' selected="selected"' : '') + '>Data > Value</option>';
-	html += '<option value="4"' + (type == '4' ? ' selected="selected"' : '') + '>Data < Value</option>';
-	return html;
+Handlebars.registerHelper('option', function (option, options){
+	var value = options.hash['value'] || option;
+	var label = options.hash['label'] || option;
+	var selected = options.hash['selected'] || false;
+	return new Handlebars.SafeString('<option value="' + value + '"' + (selected === true || value == selected ? ' selected="selected"' : '') + '>' + label + '</option>');
 });
 
 $(function (){

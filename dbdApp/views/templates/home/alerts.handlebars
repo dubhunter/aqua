@@ -20,7 +20,14 @@
 					<label>
 						<span class="hidden-phone">Alert Type</span>
 						<select name="alert_type" id="alert-type-{{id}}">
-							{{{alertTypeOptions alert_type}}}
+							{{option 'SMS' value='1' selected=alert_type}}
+							{{option 'Call' value='2' selected=alert_type}}
+							{{option 'Twitter' value='3' selected=alert_type}}
+							{{option 'Webhook' value='4' selected=alert_type}}
+							{{option 'Notifyr' value='5' selected=alert_type}}
+							{{option 'Pusher' value='6' selected=alert_type}}
+							{{option 'Email' value='7' selected=alert_type}}
+							{{option 'Splunk' value='8' selected=alert_type}}
 						</select>
 					</label>
 				</div>
@@ -50,7 +57,11 @@
 					<label>
 						<span class="hidden-phone">Trigger Type</span>
 						<select name="trigger_type" id="trigger-type-{{id}}">
-							{{{triggerTypeOptions trigger_type}}}
+							{{option 'Event' value='0' selected=trigger_type}}
+							{{option 'Data == Value' value='1' selected=trigger_type}}
+							{{option 'Data != Value' value='2' selected=trigger_type}}
+							{{option 'Data > Value' value='3' selected=trigger_type}}
+							{{option 'Data < Value' value='4' selected=trigger_type}}
 						</select>
 					</label>
 				</div>

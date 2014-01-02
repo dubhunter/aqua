@@ -12,10 +12,10 @@
 <script id="viewDashboardTimer" type="text/x-handlebars-template">
 	<div id="dashboardTimer" class="well well-small span4">
 		<p class="lead">
-			Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeUntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
+			Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeuntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
 		</p>
 		<p class="lead">
-			Run Time: {{#if timer}}{{#if timer.running}}<span class="time">{{timeUntil timer.stop}}</span>{{else}}{{timeDiff timer.start timer.stop}}{{/if}}{{else}}<em>None</em>{{/if}}
+			Run Time: {{#if timer}}{{#if timer.running}}<span class="time">{{timeuntil timer.stop}}</span>{{else}}{{timediff timer.start timer.stop}}{{/if}}{{else}}<em>None</em>{{/if}}
 		</p>
 	</div>
 </script>
