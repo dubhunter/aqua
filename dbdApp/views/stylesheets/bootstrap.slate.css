@@ -6240,7 +6240,8 @@ hr {
   background-image: -o-linear-gradient(280deg, #30353b, #43494f);
   background-image: linear-gradient(280deg, #30353b, #43494f);
   background-repeat: repeat-x;
-  border-right: 1px solid #2e3134;
+  /*border-right: 1px solid #2e3134;*/
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .navbar .navbar-search .search-query {
