@@ -68,13 +68,25 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   line-height: 30px; }
   @media (max-width: 767px) {
     #alerts .alertsRow .alertsDisplay {
-      font-size: 18px; } }
+      font-size: 18px; }
+      #alerts .alertsRow .alertsDisplay [class*="span"] {
+        float: left;
+        margin-left: 0; }
+      #alerts .alertsRow .alertsDisplay .span1 {
+        width: 10%; }
+      #alerts .alertsRow .alertsDisplay .span2 {
+        width: 20%; }
+      #alerts .alertsRow .alertsDisplay .span3 {
+        width: 70%; }
+      #alerts .alertsRow .alertsDisplay .span5 {
+        width: 90%; } }
 #alerts .alertsRow form {
   margin: 0; }
   #alerts .alertsRow form .alertsForm [class*="span"] > label {
     margin: 0;
     width: 100%; }
     #alerts .alertsRow form .alertsForm [class*="span"] > label span {
+      display: block;
       font-size: 20px;
       line-height: 26px; }
   #alerts .alertsRow form .alertsForm input[type="text"], #alerts .alertsRow form .alertsForm select {
@@ -99,7 +111,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   @media (max-width: 767px) {
     #alerts .alertsRow form .alertsForm .controls {
       float: left;
-      margin-left: 0; } }
+      margin-left: 0;
+      width: auto;
+      line-height: 10px; }
+      #alerts .alertsRow form .alertsForm .controls:last-child {
+        float: right; } }
 
 #timers .timersRow .timersDisplay {
   font-size: 30px;

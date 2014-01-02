@@ -101,6 +101,27 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 
 			@media (max-width: 767px) {
 				font-size: 18px;
+
+				[class*="span"] {
+					float: left;
+					margin-left: 0;
+				}
+
+				.span1 {
+					width: 10%;
+				}
+
+				.span2 {
+					width: 20%;
+				}
+
+				.span3 {
+					width: 70%;
+				}
+
+				.span5 {
+					width: 90%;
+				}
 			}
 		}
 
@@ -113,6 +134,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 					width: 100%;
 
 					span {
+						display: block;
 						font-size: 20px;
 						line-height: 26px;
 					}
@@ -151,6 +173,12 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 					.controls {
 						float: left;
 						margin-left: 0;
+						width: auto;
+						line-height: 10px;
+
+						&:last-child {
+							float: right;
+						}
 					}
 				}
 			}
