@@ -44,6 +44,10 @@ class Event extends dbdModel {
 		return parent::getCount($keys);
 	}
 
+	/**
+	 * @param null $name
+	 * @return Event|null
+	 */
 	public static function getLast($name = null) {
 		$keys = array();
 		$keys[self::TABLE_FIELD_NAME] = $name !== null ? $name : array(self::EVENT_NAME_CRICKETS, dbdDB::COMP_TYPE => dbdDB::COMP_NEQ);;

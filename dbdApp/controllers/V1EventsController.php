@@ -2,7 +2,7 @@
 class V1EventsController extends V1ApiController {
 
 	public function doGet() {
-		$event = $this->getParam("event");
+		$event = $this->getParam('event');
 		$limit = $this->genLimit();
 		$date_from = $this->getParam('date_from');
 		$date_to = $this->getParam('date_to');
