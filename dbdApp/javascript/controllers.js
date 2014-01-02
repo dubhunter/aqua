@@ -147,6 +147,9 @@ var alertsController = pageController.extend({
 	get: function () {
 		this._setTitle('Alerts');
 		return hyTriggers.all().done(function (data) {
+			$.each(data['triggers'], function (i, item) {
+				data['triggers'][i]['max_alert_interval'] = item['max_alert_interval'] / 60 / 60;
+			});
 			bView.replaceInto('alerts', '#page', data);
 		});
 	}
@@ -154,7 +157,10 @@ var alertsController = pageController.extend({
 
 var alertsCreateController = pageController.extend({
 	post: function () {
-		hyTriggers.create(this._getParams()).done(function (data){
+		var params = this._getParams();
+		params['max_alert_interval'] = params['max_alert_interval'] * 60 * 60;
+		hyTriggers.create(params).done(function (data){
+			data['max_alert_interval'] = data['max_alert_interval'] / 60 / 60;
 			bView.update($('form[action="/alerts/new"]'), data);
 		});
 	},
@@ -165,7 +171,10 @@ var alertsCreateController = pageController.extend({
 
 var alertsInstanceController = pageController.extend({
 	post: function () {
-		hyTriggers.update(this._getParam('id'), this._getParams()).done(function (data){
+		var params = this._getParams();
+		params['max_alert_interval'] = params['max_alert_interval'] * 60 * 60;
+		hyTriggers.update(this._getParam('id'), params).done(function (data){
+			data['max_alert_interval'] = data['max_alert_interval'] / 60 / 60;
 			bView.update($('form[action="/alerts/' + data.id + '"]'), data);
 		});
 	},

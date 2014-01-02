@@ -64,7 +64,7 @@
 			<div class="alertsForm row-fluid">
 				<div class="span4">
 					<label>
-						<span class="hidden-phone">Max Alert Interval</span><br />
+						<span class="hidden-phone">Max Alert Interval (hrs)</span><br />
 						<input type="text" name="max_alert_interval" id="max-alert-interval-{{id}}" placeholder="Max Alert Interval" value="{{max_alert_interval}}"/>
 					</label>
 				</div>
@@ -83,7 +83,7 @@
 		<div class="alertsDisplay row-fluid">
 			<div class="span1"><i class="icon-{{alertTypeIcon alert_type}}"></i></div>
 			<div class="span5">{{trigger_name}}</div>
-			<div class="span3">{{#if last_alert_date}}{{timepast last_alert_date}}{{else}}Never{{/if}}</div>
+			<div class="span3">{{#if last_alert_date}}{{timepast last_alert_date short-names=true}}{{else}}Never{{/if}}</div>
 			<div class="span1"><i class="icon-{{#if enabled}}bullhorn{{else}}off{{/if}}"></i></div>
 			<div class="span2"><a role="edit" class="btn btn-primary pull-right"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a></div>
 		</div>
