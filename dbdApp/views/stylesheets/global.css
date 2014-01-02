@@ -1,3 +1,11 @@
+/* apply a natural box layout model to all elements */
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
 body {
   min-height: 356px;
   padding-top: 60px; }
@@ -33,6 +41,12 @@ body {
     -webkit-animation-name: pulse;
     -webkit-animation-iteration-count: infinite; }
 
+select {
+  color: #52575c; }
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  height: 31px; }
+
 @-webkit-keyframes pulse {
   0% {
     color: #333333;
@@ -55,6 +69,31 @@ body {
   @media (max-width: 767px) {
     #alerts .alertsRow .alertsDisplay {
       font-size: 18px; } }
+#alerts .alertsRow form {
+  margin: 0; }
+  #alerts .alertsRow form .alertsForm [class*="span"] > label {
+    margin: 0;
+    width: 100%; }
+    #alerts .alertsRow form .alertsForm [class*="span"] > label span {
+      font-size: 20px;
+      line-height: 26px; }
+  #alerts .alertsRow form .alertsForm input[type="text"], #alerts .alertsRow form .alertsForm select {
+    font-size: 18px;
+    height: 32px;
+    padding: 0 6px;
+    width: 100%;
+    margin-bottom: 4px; }
+    @media (max-width: 767px) {
+      #alerts .alertsRow form .alertsForm input[type="text"], #alerts .alertsRow form .alertsForm select {
+        font-size: 18px;
+        height: 26px; } }
+  #alerts .alertsRow form .alertsForm .btn:last-child {
+    margin-left: 15px; }
+  #alerts .alertsRow form .alertsForm .controls {
+    height: 72px;
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    -webkit-box-align: end; }
 
 #timers .timersRow .timersDisplay {
   font-size: 30px;
@@ -71,6 +110,8 @@ body {
         width: 16%; } }
 #timers .timersRow form {
   margin: 0; }
+  #timers .timersRow form .timersForm.row-fluid {
+    line-height: 12px; }
   #timers .timersRow form .timersForm label {
     margin: 0; }
     #timers .timersRow form .timersForm label span {
@@ -80,7 +121,6 @@ body {
       vertical-align: middle; }
   #timers .timersRow form .timersForm input[type="time"] {
     font-size: 20px;
-    height: 29px;
     padding: 0 6px;
     width: auto; }
     @media (max-width: 767px) {

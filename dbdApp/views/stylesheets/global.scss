@@ -1,3 +1,12 @@
+/* apply a natural box layout model to all elements */
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 body {
 	min-height: 356px;
 	padding-top: 60px;
@@ -51,6 +60,14 @@ body {
 	}
 }
 
+select {
+	color: #52575c;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	height: 31px;
+}
+
 @-webkit-keyframes pulse {
 	0% {
 		color: #333333;
@@ -84,63 +101,48 @@ body {
 
 			@media (max-width: 767px) {
 				font-size: 18px;
-
-//				[class*="span"] {
-//					float: left;
-//					margin-left: 0;
-//				}
-//
-//				.span4 {
-//					width: 34%;
-//				}
-//
-//				.span2 {
-//					width: 16%;
-//				}
 			}
 		}
 
-//		form {
-//			margin: 0;
-//
-//			.alertsForm {
-//				label {
-//					margin: 0;
-//
-//					span {
-//						font-size: 30px;
-//						margin-right: 10px;
-//						line-height: 30px;
-//						vertical-align: middle;
-//					}
-//				}
-//
-//				input,select {
-//					font-size: 20px;
-//					height: 29px;
-//					padding: 0 6px;
-//					width: auto;
-//
-//					@media (max-width: 767px) {
-//						font-size: 18px;
-//						height: 26px;
-//					}
-//				}
-//
-//				select {
-//					color: #52575c;
-//				}
-//
-//				.btn:last-child {
-//					margin-left: 15px;
-//				}
-//
-//				.span2,
-//				.span3:last-child {
-//					text-align: right;
-//				}
-//			}
-//		}
+		form {
+			margin: 0;
+
+			.alertsForm {
+				[class*="span"] > label {
+					margin: 0;
+					width: 100%;
+
+					span {
+						font-size: 20px;
+						line-height: 26px;
+					}
+				}
+
+				input[type="text"],select {
+					font-size: 18px;
+					height: 32px;
+					padding: 0 6px;
+					width: 100%;
+					margin-bottom: 4px;
+
+					@media (max-width: 767px) {
+						font-size: 18px;
+						height: 26px;
+					}
+				}
+
+				.btn:last-child {
+					margin-left: 15px;
+				}
+
+				.controls {
+					height: 72px;
+					display: -webkit-box;
+					-webkit-box-pack: end;
+					-webkit-box-align: end;
+				}
+			}
+		}
 	}
 }
 
@@ -172,6 +174,10 @@ body {
 			margin: 0;
 
 			.timersForm {
+				&.row-fluid {
+					line-height: 12px;
+				}
+
 				label {
 					margin: 0;
 
@@ -185,7 +191,7 @@ body {
 
 				input[type="time"] {
 					font-size: 20px;
-					height: 29px;
+//					height: 29px;
 					padding: 0 6px;
 					width: auto;
 

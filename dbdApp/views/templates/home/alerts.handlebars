@@ -10,41 +10,45 @@
 	{{#if editing}}
 		<form name="alertsForm" class="form-inline" action="/alerts/{{id}}" method="post">
 			<div class="alertsForm row-fluid">
-				<div class="span4">
+				<div class="span8">
 					<label>
-						<span class="hidden-phone">Name</span>
-						<input type="text" name="trigger_name" id="trigger-name-{{id}}" value="{{trigger_name}}"/>
+						<span class="hidden-phone">Name</span><br />
+						<input type="text" name="trigger_name" id="trigger-name-{{id}}" placeholder="Name" value="{{trigger_name}}"/>
 					</label>
 				</div>
 				<div class="span4">
 					<label>
-						<span class="hidden-phone">Event Name</span>
-						<input type="text" name="event_name" id="event-name-{{id}}" value="{{event_name}}"/>
-					</label>
-				</div>
-				<div class="span4">
-					<label>
-						<span class="hidden-phone">Alert Message</span>
-						<input type="text" name="alert_msg" id="alert-message-{{id}}" value="{{alert_msg}}"/>
-					</label>
-				</div>
-				<div class="span4">
-					<label>
-						<span class="hidden-phone">Alert Recipient</span>
-						<input type="text" name="alert_recipient" id="alert-recipient-{{id}}" value="{{alert_recipient}}"/>
-					</label>
-				</div>
-				<div class="span4">
-					<label>
-						<span class="hidden-phone">Alert Type</span>
+						<span class="hidden-phone">Alert Type</span><br />
 						<select name="alert_type" id="alert-type-{{id}}">
 							{{{alertTypeOptions alert_type}}}
 						</select>
 					</label>
 				</div>
+			</div>
+			<div class="alertsForm row-fluid">
+				<div class="span8">
+					<label>
+						<span class="hidden-phone">Alert Message</span><br />
+						<input type="text" name="alert_msg" id="alert-message-{{id}}" placeholder="Alert Message" value="{{alert_msg}}"/>
+					</label>
+				</div>
 				<div class="span4">
 					<label>
-						<span class="hidden-phone">Trigger Type</span>
+						<span class="hidden-phone">Alert Recipient</span><br />
+						<input type="text" name="alert_recipient" id="alert-recipient-{{id}}" placeholder="Alert Recipient" value="{{alert_recipient}}"/>
+					</label>
+				</div>
+			</div>
+			<div class="alertsForm row-fluid">
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Event Name</span><br />
+						<input type="text" name="event_name" id="event-name-{{id}}" placeholder="Event Name" value="{{event_name}}"/>
+					</label>
+				</div>
+				<div class="span4">
+					<label>
+						<span class="hidden-phone">Trigger Type</span><br />
 						<select name="trigger_type" id="trigger-type-{{id}}">
 							{{{triggerTypeOptions trigger_type}}}
 						</select>
@@ -52,22 +56,24 @@
 				</div>
 				<div class="span4">
 					<label>
-						<span class="hidden-phone">Trigger Value</span>
-						<input type="text" name="trigger_value" id="trigger-value-{{id}}" value="{{trigger_value}}"/>
+						<span class="hidden-phone">Trigger Value</span><br />
+						<input type="text" name="trigger_value" id="trigger-value-{{id}}" placeholder="Trigger Value" value="{{trigger_value}}"/>
 					</label>
 				</div>
+			</div>
+			<div class="alertsForm row-fluid">
 				<div class="span4">
 					<label>
-						<span class="hidden-phone">Max Alert Interval</span>
-						<input type="text" name="max_alert_interval" id="max-alert-interval-{{id}}" value="{{max_alert_interval}}"/>
+						<span class="hidden-phone">Max Alert Interval</span><br />
+						<input type="text" name="max_alert_interval" id="max-alert-interval-{{id}}" placeholder="Max Alert Interval" value="{{max_alert_interval}}"/>
 					</label>
 				</div>
-				<div class="span2">
+				<div class="span4 controls">
 					<div role="switch" class="switch" data-on="info" data-off="inverse">
 						<input type="checkbox" name="enabled" id="alert-enabled-{{id}}" value="1" {{#enabled}}checked="checked" {{/enabled}}/>
 					</div>
 				</div>
-				<div class="span3">
+				<div class="span4 controls">
 					<a role="delete" href="/alerts/{{id}}" class="btn btn-danger"><i class="icon-trash"></i><span class="hidden-phone"> Delete</span></a>
 					<button type="submit" class="btn btn-success"><i class="icon-save"></i> Save</button>
 				</div>
@@ -75,9 +81,9 @@
 		</form>
 	{{else}}
 		<div class="alertsDisplay row-fluid">
-			<div class="span4">{{trigger_name}}</div>
-			<div class="span4">{{#if last_alert_date}}{{timepast last_alert_date}}{{else}}Never{{/if}}</div>
 			<div class="span1"><i class="icon-{{alertTypeIcon alert_type}}"></i></div>
+			<div class="span5">{{trigger_name}}</div>
+			<div class="span3">{{#if last_alert_date}}{{timepast last_alert_date}}{{else}}Never{{/if}}</div>
 			<div class="span1"><i class="icon-{{#if enabled}}bullhorn{{else}}off{{/if}}"></i></div>
 			<div class="span2"><a role="edit" class="btn btn-primary pull-right"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a></div>
 		</div>
