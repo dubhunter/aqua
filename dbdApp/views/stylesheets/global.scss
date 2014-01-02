@@ -136,10 +136,22 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 				}
 
 				.controls {
-					height: 72px;
 					display: -webkit-box;
 					-webkit-box-pack: end;
 					-webkit-box-align: end;
+				}
+
+				@media (min-width: 768px) {
+					.controls {
+						height: 72px;
+					}
+				}
+
+				@media (max-width: 767px) {
+					.controls {
+						float: left;
+						margin-left: 0;
+					}
 				}
 			}
 		}
