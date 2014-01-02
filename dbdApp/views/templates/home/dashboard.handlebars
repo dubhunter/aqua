@@ -22,9 +22,9 @@
 
 <script id="viewDashboardWater" type="text/x-handlebars-template">
 	<div id="dashboardWater" class="well well-small span4">
-		<p class="lead">Water Level: {{percentage level}}</p>
+		<p class="lead">Water Level: {{level}}%</p>
 		<div class="progress{{#if timer.running}} progress-striped active{{/if}}">
-			<div class="bar" style="width: {{percentage level}};"></div>
+			<div class="bar" style="width: {{level}}%;"></div>
 		</div>
 	</div>
 </script>

@@ -94,7 +94,7 @@ var homeController = pageController.extend({
 			if (data.events.length > 0) {
 				level = data.events[0]['data'];
 			}
-			dash['level'] = level / 500;
+			dash['level'] = Math.round(level);
 		});
 		var lightFetch = hyEvents.all('light', 0, 1).done(function (data) {
 			var light = 0;
@@ -316,7 +316,7 @@ var chartsController = pageController.extend({
 		hyEvents.range('liquid', Math.round(from.getTime() / 1000)).done(function (data) {
 			var $chart = $('#graphLiquid');
 			self._charts[$chart.attr('id')] = {};
-			self._chart($chart, 'Liquid Sensor', data, 500);
+			self._chart($chart, 'Liquid Sensor', data, 100);
 		});
 	}
 });

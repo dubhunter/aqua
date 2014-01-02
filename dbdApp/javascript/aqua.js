@@ -62,7 +62,7 @@ var aqua = {
 	},
 	liquid: function (level) {
 		if ($('#dashboard').length) {
-			bView.update('dashboard', {'level': level / 500}, true);
+			bView.update('dashboard', {'level': Math.round(level)}, true);
 		}
 	},
 	handleEvents: function (event, data) {
