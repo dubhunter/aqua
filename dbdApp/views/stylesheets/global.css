@@ -90,10 +90,16 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   #alerts .alertsRow form .alertsForm .btn:last-child {
     margin-left: 15px; }
   #alerts .alertsRow form .alertsForm .controls {
-    height: 72px;
     display: -webkit-box;
     -webkit-box-pack: end;
     -webkit-box-align: end; }
+  @media (min-width: 768px) {
+    #alerts .alertsRow form .alertsForm .controls {
+      height: 72px; } }
+  @media (max-width: 767px) {
+    #alerts .alertsRow form .alertsForm .controls {
+      float: left;
+      margin-left: 0; } }
 
 #timers .timersRow .timersDisplay {
   font-size: 30px;
