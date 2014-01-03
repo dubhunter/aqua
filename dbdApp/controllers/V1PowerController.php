@@ -2,7 +2,7 @@
 class V1PowerController extends V1ApiController {
 
 	public function doGet() {
-		$event = Event::getLast('power');
+		$event = Event::getLast(Event::EVENT_NAME_POWER);
 		$this->data('status', $event ? $event->getEventData() : 'off');
 	}
 

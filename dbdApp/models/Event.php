@@ -7,8 +7,13 @@ class Event extends dbdModel {
 	const TABLE_FIELD_DATA = 'event_data';
 	const TABLE_FIELD_DATE = 'event_date';
 
-	//the event name we don't hear anything from the arduino
+	const EVENT_NAME_POWER = 'power';
+	const EVENT_NAME_LIQUID = 'liquid';
+	const EVENT_NAME_LIGHT = 'light';
+	//the event name when we don't hear anything from the aquapi
 	const EVENT_NAME_CRICKETS = 'crickets';
+	//the event name when we try to turn on with no water
+	const EVENT_NAME_DESERT = 'desert';
 
 	/**
 	 * @param null $name

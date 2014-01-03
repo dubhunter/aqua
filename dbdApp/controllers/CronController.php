@@ -9,10 +9,16 @@ class CronController extends APController {
 
 	public function doTimers() {
 		foreach (Timer::toStart() as $timer) {
-			echo "Turning on!" . PHP_EOL;
-			Power::on();
-			$timer->setRunning(1);
-			$timer->save();
+			$level = Event::getLast(Event::EVENT_NAME_LIQUID);
+			if ($level->getEventData() == 0) {
+				echo "It's a damn desert, I cannot turn on!" . PHP_EOL;
+				Event::create(Event::EVENT_NAME_DESERT, $level->getEventData());
+			} else {
+				echo "Turning on!" . PHP_EOL;
+				Power::on();
+				$timer->setRunning(1);
+				$timer->save();
+			}
 		}
 		foreach (Timer::toStop() as $timer) {
 			echo "Turning off!" . PHP_EOL;

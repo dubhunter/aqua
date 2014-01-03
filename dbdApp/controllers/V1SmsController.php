@@ -7,7 +7,7 @@ class V1SmsController extends APController {
 
 		if (in_array($body, array('level', 'liquid'))) {
 			$this->setTemplate('twiml/water-level.tpl');
-			$level = Event::getLast('liquid');
+			$level = Event::getLast(Event::EVENT_NAME_LIQUID);
 			$this->view->assign('level', $level->getEventData());
 		} else {
 			$this->setTemplate('twiml/empty.tpl');
