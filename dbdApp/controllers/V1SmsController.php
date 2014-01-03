@@ -1,10 +1,6 @@
 <?php
 class V1SmsController extends APController {
 
-	protected function init() {
-		$this->setTemplate('twiml/empty.tpl');
-	}
-
 	public function doPost() {
 		dbdLog($this->getParams());
 		$body = trim(strtolower($this->getParam('Body')));
@@ -12,7 +8,7 @@ class V1SmsController extends APController {
 		if (in_array($body, array('level', 'liquid'))) {
 			$this->setTemplate('twiml/water-level.tpl');
 			$level = Event::getLast('liquid');
-			$this->view->assign('level', $level->getData());
+			$this->view->assign('level', $level->getEventData());
 		} else {
 			$this->setTemplate('twiml/empty.tpl');
 			$power = new Power();
