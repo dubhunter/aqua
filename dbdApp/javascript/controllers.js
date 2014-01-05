@@ -91,7 +91,7 @@ var homeController = pageController.extend({
 		});
 		var levelFetch = hyReservoir.get().done(function (data) {
 			dash['level'] = Math.round(data['level']);
-			dash['runtime'] = Math.round(data['runtime']);
+			dash['runrate'] = data['runrate'];
 		});
 		var lightFetch = hyEvents.all('light', 0, 1).done(function (data) {
 			var light = 0;

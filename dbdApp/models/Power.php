@@ -27,7 +27,7 @@ class Power extends dbdModel {
 			self::TABLE_FIELD_READ => 1,
 			self::TABLE_FIELD_DATE_UPDATED => array(
 				date('Y-m-d 00:00:00', strtotime($days . ' days ago')),
-				date('Y-m-d 23:59:59', strtotime('1 days ago')),
+				date('Y-m-d 23:59:59'),
 				dbdDB::COMP_TYPE => dbdDB::COMP_BETWEEN,
 			)
 		);

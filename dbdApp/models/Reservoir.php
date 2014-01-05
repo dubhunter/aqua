@@ -8,7 +8,12 @@ class Reservoir {
 	protected static $event = null;
 	protected static $rpm = null;
 
-	protected static function getRunPerMinute() {
+	protected static function timeToMinutes($time) {
+		$parts = explode(':', $time);
+		return $parts[1] + ($parts[0] * 60);
+	}
+
+	public static function getRunrate() {
 		if (self::$rpm === null) {
 			$pairs = array();
 			$pair = array();
@@ -60,11 +65,6 @@ class Reservoir {
 		return self::$rpm;
 	}
 
-	protected static function timeToMinutes($time) {
-		$parts = explode(':', $time);
-		return $parts[1] + ($parts[0] * 60);
-	}
-
 	public static function getLevel() {
 		if (self::$event === null) {
 			self::$event = Event::getLast(Event::EVENT_NAME_LIQUID);
@@ -73,7 +73,7 @@ class Reservoir {
 	}
 
 	public static function getRuntime() {
-		return round(self::getLevel() / self::getRunPerMinute(), 2);
+		return round(self::getLevel() / self::getRunrate(), 2);
 	}
 
 	public static function getRundays() {

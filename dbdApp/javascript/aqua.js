@@ -119,8 +119,12 @@ Handlebars.registerHelper('timediff', function (start, stop){
 	return $.timeLength(aqua.timeToSeconds(stop) - aqua.timeToSeconds(start), true, true);
 });
 
-Handlebars.registerHelper('rundays', function (minutes, start, stop){
-	var days = Math.floor(minutes * 60 / (aqua.timeToSeconds(stop) - aqua.timeToSeconds(start)));
+Handlebars.registerHelper('runtime', function (level, runrate){
+	return Math.round(level / runrate);
+});
+
+Handlebars.registerHelper('rundays', function (level, runrate, start, stop){
+	var days = Math.floor(level / runrate * 60 / (aqua.timeToSeconds(stop) - aqua.timeToSeconds(start)));
 	return $.timeLength(days * 24 * 60 * 60, true, true);
 });
 
