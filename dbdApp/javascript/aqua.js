@@ -119,6 +119,11 @@ Handlebars.registerHelper('timediff', function (start, stop){
 	return $.timeLength(aqua.timeToSeconds(stop) - aqua.timeToSeconds(start), true, true);
 });
 
+Handlebars.registerHelper('rundays', function (minutes, start, stop){
+	var days = Math.floor(minutes * 60 / (aqua.timeToSeconds(stop) - aqua.timeToSeconds(start)));
+	return $.timeLength(days * 24 * 60 * 60, true, true);
+});
+
 Handlebars.registerHelper('alertTypeIcon', function (type, options){
 	switch (type) {
 		case '1': //sms

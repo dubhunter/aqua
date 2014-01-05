@@ -97,3 +97,9 @@ var hyTriggers = {
 		return aquaApi.destroy('/v1/triggers/' + id);
 	}
 };
+
+var hyReservoir = {
+	get: function () {
+		return aquaApi.get('/v1/reservoir');
+	}
+};
