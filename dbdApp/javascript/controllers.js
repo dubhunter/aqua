@@ -70,8 +70,9 @@ var pageController = aquaController.extend({
 			});
 		} else {
 			bView.update('header', head, true);
+			$D.resolve();
 		}
-		return $D.promiseForever();
+		return $D.promise();
 	},
 	_ensurePage: function () {
 		if ($('#page').length == 0) {
