@@ -65,18 +65,29 @@ var aqua = {
 			bView.update('dashboard', {'level': Math.round(level)}, true);
 		}
 	},
+	status: function (online) {
+		if ($('#header').length) {
+			bView.update('header', {'online': online}, true);
+		}
+	},
 	handleEvents: function (event, data) {
 		$.log(event + ': ' + data);
 		switch (event) {
 			case 'power':
+				aqua.status(true);
 				aqua.power(data);
 				break;
 			case 'light':
+				aqua.status(true);
 				aqua.light(data);
 				break;
 			case 'liquid':
+				aqua.status(true);
 				aqua.liquid(data);
 				break;
+			case 'crickets':
+				aqua.status(false);
+
 		}
 	},
 	startEventSocket: function () {

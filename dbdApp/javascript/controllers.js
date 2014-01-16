@@ -49,18 +49,29 @@ var aquaController = bController.extend({
 
 var pageController = aquaController.extend({
 	_init: function () {
-		this.parent();
-		this._ensureNav();
-		this._ensurePage();
+		var that = this, $D = $.Deferred();
+		$.whenQueued(
+			[this, this.parent],
+			[this, this._ensureNav]
+		).done(function (){
+			that._ensurePage();
+			$D.resolve();
+		});
+		return $D.promise();
 	},
 	_ensureNav: function () {
-		var data = {}, selected = $this.controller.replace('Controller', '');
-		data[selected] = true;
+		var head = {}, $D = $.Deferred(), selected = $this.controller.replace('Controller', '');
+		head['selected'] = true;
 		if ($('#header').length == 0) {
-			bView.appendTo('header', 'body', data);
+			hyEvents.all(null, 0, 1).done(function (data){
+				head['online'] = (new Date()).getTime() - $.global.parseDate(data.events[0].date).getTime() <= 60000;
+				bView.appendTo('header', 'body', head);
+				$D.resolve();
+			});
 		} else {
-			bView.update('header', data);
+			bView.update('header', head, true);
 		}
+		return $D.promiseForever();
 	},
 	_ensurePage: function () {
 		if ($('#page').length == 0) {
