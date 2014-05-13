@@ -278,7 +278,9 @@ var chartsController = pageController.extend({
 					},
 					threshold: null,
 					tooltip: {
-						minute: '%A, %b %e, %l:%M%P'
+						dateTimeLabelFormats: {
+							hour: '%A, %b %e, %l:%M%P'
+						}
 					}
 				}
 			},
