@@ -61,7 +61,7 @@ var pageController = aquaController.extend({
 	},
 	_ensureNav: function () {
 		var head = {}, $D = $.Deferred(), selected = $this.controller.replace('Controller', '');
-		head['selected'] = true;
+		head[selected] = true;
 		if ($('#header').length == 0) {
 			hyEvents.all(null, 0, 1).done(function (data){
 				head['online'] = (new Date()).getTime() - $.global.parseDate(data.events[0].date).getTime() <= 60000;
