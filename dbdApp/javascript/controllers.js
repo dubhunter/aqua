@@ -243,7 +243,7 @@ var chartsController = pageController.extend({
 			xAxis: {
 				type: 'datetime',
 				dateTimeLabelFormats: { // don't display the dummy year
-					hour: '%A, %b %e, %l:%M%P',
+					hour: '%l:%M%P',
 					month: '%e. %b',
 					year: '%b'
 				}
