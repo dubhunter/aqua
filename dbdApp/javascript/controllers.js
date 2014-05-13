@@ -69,7 +69,10 @@ var pageController = aquaController.extend({
 				$D.resolve();
 			});
 		} else {
-			bView.update('header', head, true);
+			var view = bView.templateView('header');
+			head['online'] = view.data['online'];
+			head['power'] = view.data['power'];
+			bView.update('header', head);
 			$D.resolve();
 		}
 		return $D.promise();
