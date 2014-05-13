@@ -276,7 +276,10 @@ var chartsController = pageController.extend({
 							lineWidth: 1
 						}
 					},
-					threshold: null
+					threshold: null,
+					tooltip: {
+						minute: '%A, %b %e, %l:%M%P'
+					}
 				}
 			},
 //			title: {
