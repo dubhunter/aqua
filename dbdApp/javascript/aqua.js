@@ -169,6 +169,12 @@ Handlebars.registerHelper('option', function (option, options){
 	return new Handlebars.SafeString('<option value="' + value + '"' + (selected === true || value == selected ? ' selected="selected"' : '') + '>' + label + '</option>');
 });
 
+Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
+
 $(function (){
 	$(window).bind('statechange', function (e){
 		bourbon.run(e);

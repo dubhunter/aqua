@@ -238,8 +238,7 @@ var chartsController = pageController.extend({
 				width: parseFloat($chart.width()),
 				height: parseFloat($chart.height()),
 				renderTo: $chart.attr('id'),
-				defaultSeriesType: 'area',
-				useUTC: false
+				defaultSeriesType: 'area'
 			},
 			xAxis: {
 				type: 'datetime',
