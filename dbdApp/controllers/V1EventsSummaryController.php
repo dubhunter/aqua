@@ -13,8 +13,6 @@ class V1EventsSummaryController extends V1ApiController {
 		$events = Event::getAll($event, $date_from, $date_to, $limit);
 		$count = count($events);
 
-		dbdLog($count);
-
 		$downsample = $this->getParam('downsample');
 		if (!$downsample) {
 			$downsample = 1;
@@ -26,21 +24,14 @@ class V1EventsSummaryController extends V1ApiController {
 
 		$data = array();
 		for ($i = $count - 1; $i >= 0; $i--) {
-			dbdLog($i);
 			$value = $events[$i]->getEventData();
 			$date = strtotime($events[$i]->getEventDate());
-			dbdLog($value);
-			dbdLog($date);
 			if (!is_numeric($value)) {
 				continue;
 			}
 			$sum += $value;
 			$sum_count++;
-			dbdLog($sum);
-			dbdLog($sum_count);
-			dbdLog("$date > ($start + ($downsample * $step_count) + $downsample) || $i == 0");
 			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i == 0) {
-				dbdLog('inside if');
 				$data[] = array(
 					'data' => round($sum / $sum_count),
 					'date' => dbdDB::datez($start + ($downsample * $step_count)),
@@ -49,7 +40,6 @@ class V1EventsSummaryController extends V1ApiController {
 				$sum_count = 0;
 				$step_count++;
 			}
-			dbdLog('after if');
 		}
 
 		$total = Event::getCount($event);
