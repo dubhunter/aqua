@@ -7,7 +7,6 @@ class V1PowerController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		if ($this->getParam('status') == 'on') {
 			$power = Power::on();
 		} else {

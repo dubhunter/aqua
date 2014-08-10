@@ -2,7 +2,6 @@
 class V1SmsController extends APController {
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$body = trim(strtolower($this->getParam('Body')));
 
 		if (in_array($body, array('level', 'liquid'))) {

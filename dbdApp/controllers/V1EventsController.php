@@ -26,7 +26,6 @@ class V1EventsController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$event = Event::create($this->getParam('event'), $this->getParam('data'));
 		$this->data(array(
 			'id' => $event->getID(),

@@ -21,7 +21,6 @@ class V1TriggersInstanceController extends V1ApiController {
 	}
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		$trigger = new Trigger($this->getParam('id'));
 		$trigger->setEventName($this->getParam('event_name'));
 		$trigger->setTriggerName($this->getParam('trigger_name'));
