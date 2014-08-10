@@ -40,6 +40,7 @@ class V1EventsSummaryController extends V1ApiController {
 			dbdLog($sum_count);
 			dbdLog("$date > ($start + ($downsample * $step_count) + $downsample) || $i = 0");
 			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i = 0) {
+				dbdLog('inside if');
 				$data[] = array(
 					'data' => round($sum / $sum_count),
 					'date' => dbdDB::datez($start + ($downsample * $step_count)),
@@ -48,6 +49,7 @@ class V1EventsSummaryController extends V1ApiController {
 				$sum_count = 0;
 				$step_count++;
 			}
+			dbdLog('after if');
 		}
 
 		$total = Event::getCount($event);
