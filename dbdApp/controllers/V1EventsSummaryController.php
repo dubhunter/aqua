@@ -17,7 +17,7 @@ class V1EventsSummaryController extends V1ApiController {
 		if (!$downsample) {
 			$downsample = 1;
 		}
-		$step_count = 0;
+		$step_count = 1;
 		$sum = 0;
 		$sum_count = 0;
 		$start = $count ? strtotime($events[$count - 1]->getEventDate()) : time();
@@ -31,7 +31,7 @@ class V1EventsSummaryController extends V1ApiController {
 			}
 			$sum += $value;
 			$sum_count++;
-			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i == 0) {
+			if ($date > ($start + ($downsample * $step_count)) || $i == 0) {
 				$data[] = array(
 					'data' => round($sum / $sum_count),
 					'date' => dbdDB::datez($start + ($downsample * $step_count)),
