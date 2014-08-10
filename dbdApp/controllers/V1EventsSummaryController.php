@@ -38,8 +38,8 @@ class V1EventsSummaryController extends V1ApiController {
 			$sum_count++;
 			dbdLog($sum);
 			dbdLog($sum_count);
-			dbdLog("$date > ($start + ($downsample * $step_count) + $downsample) || $i = 0");
-			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i = 0) {
+			dbdLog("$date > ($start + ($downsample * $step_count) + $downsample) || $i == 0");
+			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i == 0) {
 				dbdLog('inside if');
 				$data[] = array(
 					'data' => round($sum / $sum_count),
