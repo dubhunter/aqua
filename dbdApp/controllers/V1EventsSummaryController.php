@@ -26,6 +26,8 @@ class V1EventsSummaryController extends V1ApiController {
 		for ($i = $count - 1; $i >= 0; $i--) {
 			$value = $events[$i]->getEventData();
 			$date = strtotime($events[$i]->getEventDate());
+			dbdLog($value);
+			dbdLog($date);
 			if (!is_numeric($value)) {
 				continue;
 			}
