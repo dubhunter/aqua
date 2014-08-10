@@ -26,6 +26,7 @@ class V1EventsSummaryController extends V1ApiController {
 
 		$data = array();
 		for ($i = $count - 1; $i >= 0; $i--) {
+			dbdLog($i);
 			$value = $events[$i]->getEventData();
 			$date = strtotime($events[$i]->getEventDate());
 			dbdLog($value);
