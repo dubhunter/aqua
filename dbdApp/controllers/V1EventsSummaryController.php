@@ -32,6 +32,7 @@ class V1EventsSummaryController extends V1ApiController {
 			dbdLog($value);
 			dbdLog($date);
 			if (!is_numeric($value)) {
+				dbdLog('continue');
 				continue;
 			}
 			$sum += $value;
