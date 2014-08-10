@@ -311,7 +311,7 @@ var chartsController = pageController.extend({
 		bView.replaceInto('charts', '#page');
 		var from = new Date();
 		from.setDate(from.getDate() - 1);
-		var downsample = 1200; // 20 minutes
+		var downsample = 1800; // 30 minutes
 		hyEvents.summary('light', Math.round(from.getTime() / 1000), null, downsample).done(function (data) {
 			var $chart = $('#graphLight');
 			self._charts[$chart.attr('id')] = {};
