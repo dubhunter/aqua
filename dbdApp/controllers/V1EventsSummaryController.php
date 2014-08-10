@@ -24,11 +24,11 @@ class V1EventsSummaryController extends V1ApiController {
 
 		$data = array();
 		for ($i = $count - 1; $i >= 0; $i--) {
-			if (!is_int($events[$i]->getEventData())) {
-				continue;
-			}
 			$value = $events[$i]->getEventData();
 			$date = strtotime($events[$i]->getEventDate());
+			if (!is_numeric($value)) {
+				continue;
+			}
 			$sum += $value;
 			$sum_count++;
 			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i = 0) {
