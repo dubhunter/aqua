@@ -13,7 +13,6 @@ class V1EventsSummaryController extends V1ApiController {
 		$events = Event::getAll($event, $date_from, $date_to, $limit);
 		$count = count($events);
 
-		dbdLog($events);
 		dbdLog($count);
 
 		$downsample = $this->getParam('downsample');
