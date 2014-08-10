@@ -28,7 +28,7 @@ class V1EventsSummaryController extends V1ApiController {
 				continue;
 			}
 			$value = $events[$i]->getEventData();
-			$date = $events[$i]->getEventDate();
+			$date = strtotime($events[$i]->getEventDate())
 			$sum += $value;
 			$sum_count++;
 			if ($date > ($start + ($downsample * $step_count) + $downsample) || $i = 0) {
