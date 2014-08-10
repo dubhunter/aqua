@@ -22,6 +22,7 @@ dbdRequest::addRewrite('#^/v1/shutoff/?$#i', '/v1ShutoffController');
 dbdRequest::addRewrite('#^/v1/reservoir/?$#i', '/v1ReservoirController');
 dbdRequest::addRewrite('#^/v1/events/?$#i', '/v1EventsController');
 dbdRequest::addRewrite('#^/v1/events/([0-9]+)/?$#i', '/v1EventsInstanceController?id=$1');
+dbdRequest::addRewrite('#^/v1/events/summary/?$#i', '/v1EventsSummaryController?id=$1');
 dbdRequest::addRewrite('#^/v1/timers/?$#i', '/v1TimersController');
 dbdRequest::addRewrite('#^/v1/timers/([0-9]+)/?$#i', '/v1TimersInstanceController?id=$1');
 dbdRequest::addRewrite('#^/v1/triggers/?$#i', '/v1TriggersController');

@@ -207,31 +207,16 @@ var chartsController = pageController.extend({
 		}];
 		var date;
 		var value = 0;
-		var sum = 0;
-		var sumCount = 0;
-		var interval = 1200 * 1000; // 20 minutes
-		var intervalCount = 0;
-		var start = data.events.length ? new Date(data.events[data.events.length - 1].date) : new Date();
-		for (var i = data.events.length - 1; i >= 0; i--) {
+		for (var i = 0; i < data.events.length; i++) {
 			date = new Date(data.events[i].date);
 			value = parseInt(data.events[i].data);
-			if (isNaN(value)) {
-				continue;
+			series[0].data.push([
+				date.getTime(),
+				value
+			]);
+			if (max && value > max) {
+				max = value;
 			}
-			if (date.getTime() > (start.getTime() + (interval * intervalCount) + interval) || i == 0) {
-				series[0].data.push([
-					(start.getTime() + (interval * intervalCount)),
-					Math.round(sum / sumCount)
-				]);
-				sum = 0;
-				sumCount = 0;
-				intervalCount++;
-				if (max && value > max) {
-					max = value;
-				}
-			}
-			sum += value;
-			sumCount++;
 		}
 		$.log(series);
 		var options = {
@@ -326,12 +311,13 @@ var chartsController = pageController.extend({
 		bView.replaceInto('charts', '#page');
 		var from = new Date();
 		from.setDate(from.getDate() - 1);
-		hyEvents.range('light', Math.round(from.getTime() / 1000)).done(function (data) {
+		var downsample = 1200; // 20 minutes
+		hyEvents.summary('light', Math.round(from.getTime() / 1000), null, downsample).done(function (data) {
 			var $chart = $('#graphLight');
 			self._charts[$chart.attr('id')] = {};
 			self._chart($chart, 'Light Sensor', data);
 		});
-		hyEvents.range('liquid', Math.round(from.getTime() / 1000)).done(function (data) {
+		hyEvents.summary('liquid', Math.round(from.getTime() / 1000), null, downsample).done(function (data) {
 			var $chart = $('#graphLiquid');
 			self._charts[$chart.attr('id')] = {};
 			self._chart($chart, 'Liquid Sensor', data, 100);

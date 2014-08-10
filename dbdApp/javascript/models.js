@@ -42,6 +42,22 @@ var hyEvents = {
 		}
 		return aquaApi.get('/v1/events', data);
 	},
+	summary: function (event, date_from, date_to, downsample) {
+		var data = {};
+		if (event) {
+			data.event = event;
+		}
+		if (date_from) {
+			data.date_from = date_from;
+		}
+		if (date_to) {
+			data.date_to = date_to;
+		}
+		if (downsample) {
+			data.downsample = downsample;
+		}
+		return aquaApi.get('/v1/events/summary', data);
+	},
 	get: function (id) {
 		return aquaApi.get('/v1/events/' + id);
 	},
