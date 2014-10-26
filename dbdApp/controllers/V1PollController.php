@@ -7,8 +7,6 @@ class V1PollController extends V1ApiController {
 			$this->data(array(
 				'power' => ($power->getStatus() ? 'on' : 'off'),
 			));
-			$power->setRead(1);
-			$power->save();
 		}
 
 	}

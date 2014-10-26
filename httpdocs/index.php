@@ -17,6 +17,7 @@ dbdRequest::addRewrite('#^(.+\.css)$#i', '/dbdCSS/combine/?files=$1');
 dbdRequest::addRewrite('#^(.+\.js)$#i', '/dbdJS/combine/?files=$1');
 
 dbdRequest::addRewrite('#^/v1/poll/?$#i', '/v1PollController');
+dbdRequest::addRewrite('#^/v1/poll-ack/?$#i', '/v1PollAckController');
 dbdRequest::addRewrite('#^/v1/power/?$#i', '/v1PowerController');
 dbdRequest::addRewrite('#^/v1/shutoff/?$#i', '/v1ShutoffController');
 dbdRequest::addRewrite('#^/v1/reservoir/?$#i', '/v1ReservoirController');
