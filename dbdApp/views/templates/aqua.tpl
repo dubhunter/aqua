@@ -4,9 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="author" content="Will Mason" />
-	<meta name="description" content="The AquaPi plant watering and monitoring system. Powerd by Twilio, Pusher, Notifyr, RaspberryPi, and bourbon.js" />
+	<meta name="description" content="The AquaPi plant watering and monitoring system. Powerd by Twilio, Pusher, Notifyr, RaspberryPi, and bourbon.js">
 
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
