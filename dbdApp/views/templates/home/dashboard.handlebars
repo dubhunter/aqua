@@ -11,7 +11,7 @@
 </script>
 
 <script id="viewDashboardTimer" type="text/x-handlebars-template">
-	<div id="dashboardTimer" class="well well-small span4">
+	<div id="dashboardTimer" class="well well-small span3">
 		<p class="lead">
 			Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeuntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
 		</p>
@@ -22,7 +22,7 @@
 </script>
 
 <script id="viewDashboardWater" type="text/x-handlebars-template">
-	<div id="dashboardWater" class="well well-small span3">
+	<div id="dashboardWater" class="well well-small span4">
 		<p class="lead">Water<span class="hidden-phone"> Level</span>: {{level}}% | {{runtime level runrate}} min ({{rundays level runrate timer.start timer.stop}})</p>
 		<div class="progress{{#if timer.running}} progress-striped active{{/if}}">
 			<div class="bar" style="width: {{level}}%;"></div>
