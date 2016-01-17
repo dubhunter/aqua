@@ -55,6 +55,11 @@ var aqua = {
 			});
 		}
 	},
+	temp: function (temp) {
+		if ($('#dashboard').length) {
+			bView.update('dashboard', {'temp': Math.round(temp)}, true);
+		}
+	},
 	light: function (light) {
 		if ($('#dashboard').length) {
 			bView.update('dashboard', {'light': light / 1000}, true);
@@ -76,6 +81,10 @@ var aqua = {
 			case 'power':
 				aqua.status(true);
 				aqua.power(data);
+				break;
+			case 'temp':
+				aqua.status(true);
+				aqua.temp(data);
 				break;
 			case 'light':
 				aqua.status(true);
