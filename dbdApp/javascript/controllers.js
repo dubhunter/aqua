@@ -115,7 +115,14 @@ var homeController = pageController.extend({
 			}
 			dash['light'] = light / 1000;
 		});
-		return $.when(timerFetch, levelFetch, lightFetch).done(function (){
+		var tempFetch = hyEvents.all('temp', 0, 1).done(function (data) {
+			var temp = 0;
+			if (data.events.length > 0) {
+				temp = data.events[0]['data'];
+			}
+			dash['temp'] = temp;
+		});
+		return $.when(timerFetch, levelFetch, lightFetch, tempFetch).done(function (){
 			bView.replaceInto('dashboard', '#page', dash);
 		})
 	}
