@@ -120,7 +120,7 @@ var homeController = pageController.extend({
 			if (data.events.length > 0) {
 				temp = data.events[0]['data'];
 			}
-			dash['temp'] = temp;
+			dash['temp'] = Math.round(temp);
 		});
 		return $.when(timerFetch, levelFetch, lightFetch, tempFetch).done(function (){
 			bView.replaceInto('dashboard', '#page', dash);
