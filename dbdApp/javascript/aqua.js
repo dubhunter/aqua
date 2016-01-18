@@ -148,6 +148,17 @@ Handlebars.registerHelper('rundays', function (level, runrate, start, stop){
 	return days ? $.timeLength(days * 24 * 60 * 60, true, true) : '0 days';
 });
 
+Handlebars.registerHelper('tempbar', function (level, temp){
+	switch (true) {
+		case temp < 60:
+			return '';
+		case temp > 80:
+			return ' bar-danger';
+		default:
+			return ' bar-warning';
+	}
+});
+
 Handlebars.registerHelper('alertTypeIcon', function (type, options){
 	switch (type) {
 		case '1': //sms
