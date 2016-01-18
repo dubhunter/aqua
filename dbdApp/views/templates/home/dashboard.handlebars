@@ -11,7 +11,7 @@
 </script>
 
 <script id="viewDashboardTimer" type="text/x-handlebars-template">
-	<div id="dashboardTimer" class="well well-small span3">
+	<div id="dashboardTimer" class="well well-small span4">
 		<p class="lead">
 			Next Run: {{#if timer}}{{#if timer.running}}<em>Running</em>{{else}}<span class="time">{{timeuntil timer.start}}</span>{{/if}}{{else}}<em>None</em>{{/if}}
 		</p>
@@ -31,7 +31,7 @@
 </script>
 
 <script id="viewDashboardLight" type="text/x-handlebars-template">
-	<div id="dashboardLight" class="well well-small span3">
+	<div id="dashboardLight" class="well well-small span2">
 		<p class="lead">Light<span class="hidden-phone"> Level</span>: {{percentage light}}</p>
 		<div class="progress">
 			<div class="bar bar-warning" style="width: {{percentage light}};"></div>
