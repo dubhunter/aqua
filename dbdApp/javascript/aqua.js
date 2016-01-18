@@ -148,7 +148,7 @@ Handlebars.registerHelper('rundays', function (level, runrate, start, stop){
 	return days ? $.timeLength(days * 24 * 60 * 60, true, true) : '0 days';
 });
 
-Handlebars.registerHelper('tempbar', function (level, temp){
+Handlebars.registerHelper('tempbar', function (temp){
 	switch (true) {
 		case temp < 60:
 			return '';
