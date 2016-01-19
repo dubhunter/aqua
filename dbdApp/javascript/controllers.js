@@ -324,6 +324,11 @@ var chartsController = pageController.extend({
 			self._charts[$chart.attr('id')] = {};
 			self._chart($chart, 'Light Sensor', data);
 		});
+		hyEvents.summary('temp', Math.round(from.getTime() / 1000), null, downsample).done(function (data) {
+			var $chart = $('#graphTemp');
+			self._charts[$chart.attr('id')] = {};
+			self._chart($chart, 'Temp Sensor', data);
+		});
 		hyEvents.summary('liquid', Math.round(from.getTime() / 1000), null, downsample).done(function (data) {
 			var $chart = $('#graphLiquid');
 			self._charts[$chart.attr('id')] = {};
