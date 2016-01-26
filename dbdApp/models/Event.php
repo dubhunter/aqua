@@ -10,6 +10,7 @@ class Event extends dbdModel {
 	const EVENT_NAME_POWER = 'power';
 	const EVENT_NAME_LIQUID = 'liquid';
 	const EVENT_NAME_LIGHT = 'light';
+	const EVENT_NAME_TEMP = 'temp';
 	//the event name when we don't hear anything from the aquapi
 	const EVENT_NAME_CRICKETS = 'crickets';
 	//the event name when we try to turn on with no water
